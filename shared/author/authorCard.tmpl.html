@@ -1,0 +1,22 @@
+<md-card class="book-md-card md-whiteframe-z1">
+  <section class="book-cover-wrapper" ui-sref="app.book({id: details.id})">
+      <img ng-show="details.editions[0].cover" ng-src="{{details.editions[0].cover}}" alt="{{details.title}}">
+      <img ng-show="!details.editions[0].cover" src="assets/img/no_book_cover.48f403a7.jpg" alt="{{details.title}}">
+  </section>
+  <md-card-content>
+    <div class="details" flex layout-wrap>
+      <a class="title" ui-sref="app.book({id: details.id})" flex>
+        {{details.title}}
+        <md-tooltip md-delay="700">
+          {{details.title}}
+        </md-tooltip>
+      </a>
+      <a class="sub-title" ui-sref="app.author({id: details.authors[0].id})" flex>
+        {{details.authors[0].names[0]}}
+        <md-tooltip md-delay="700">
+          {{details.authors[0].names[0]}}
+        </md-tooltip>
+      </a>
+    </div>
+  </md-card-content>
+</md-card>

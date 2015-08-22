@@ -1,0 +1,24 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-sm="80" flex-gt-md="70" flex-gt-lg="60">
+    <h2 class="md-title" layout-padding>Login</h2>
+    <md-card>
+      <md-card-content>
+        <form ng-submit="submit(username, password)">
+          <md-input-container >
+            <label>Username</label>
+            <input ng-model="username">
+          </md-input-container>
+
+          <md-input-container flex>
+            <label>Password</label>
+            <input type="password" ng-model="password">
+          </md-input-container>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button class="md-primary" type="submit">Submit</md-button>
+          <md-button>Cancel</md-button>
+        </div>
+      </form>
+    </md-card>
+  </div>
+</div>

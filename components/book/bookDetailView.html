@@ -1,0 +1,48 @@
+<md-card class="book-details">
+  <div class="details-info" flex>
+    <div class="info-container" flex>
+      <div class="cover-container">
+        <img ng-src="{{edition.cover}}" class="md-card-image" alt="{{book.title}}">
+      </div>
+      <div class="info-box" flex>
+        <h2 class="md-headline">{{book.title}}</h2>
+        <div class="left-info">
+          <!-- <a ui-sref="app.author({id: author.id})">
+            <img class="author-icon" ng-src="{{author.pictures[0]}}" alt="{{author.name[0]}}">
+          </a> -->
+          <div class="author-details">
+            <a class="md-body-2" ui-sref="app.author({id: author.id})">
+              {{author.names[0]}}
+            </a></br>
+            <span class="md-caption" ng-repeat="edition in book.editions">{{edition.editor}}{{$last ? '' : ', '}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <md-card-content>
+    <p class="md-body-1 book-description" ng-bind-html="book.description"></p>
+    <md-divider></md-divider>
+    <h4 class="md-body-1 heading">Additional Information</h4>
+    <div class="details-section-contents" layout="row" layout-align="space-around center">
+      <div class="meta-info">
+        <div class="md-body-2">Serie</div>
+        <div class="md-body-1 content">{{book.serie.name}}</div>
+      </div>
+      <div class="meta-info">
+        <div class="md-body-2">ISBN</div>
+        <div class="md-body-1 content">{{edition.isbn}}</div>
+      </div>
+      <div class="meta-info">
+        <div class="md-body-2">ASIN</div>
+        <div class="md-body-1 content">{{edition.asin}}</div>
+      </div>
+      <div class="meta-info">
+        <div class="md-body-2">EAN</div>
+        <div class="md-body-1 content">{{edition.ean}}</div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>
+
+<!-- {{book}} -->
