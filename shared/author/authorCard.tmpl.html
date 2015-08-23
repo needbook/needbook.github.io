@@ -1,22 +1,18 @@
-<md-card class="book-md-card md-whiteframe-z1">
-  <section class="book-cover-wrapper" ui-sref="app.book({id: details.id})">
-      <img ng-show="details.editions[0].cover" ng-src="{{details.editions[0].cover}}" alt="{{details.title}}">
-      <img ng-show="!details.editions[0].cover" src="assets/img/no_book_cover.48f403a7.jpg" alt="{{details.title}}">
-  </section>
-  <md-card-content>
-    <div class="details" flex layout-wrap>
-      <a class="title" ui-sref="app.book({id: details.id})" flex>
-        {{details.title}}
-        <md-tooltip md-delay="700">
-          {{details.title}}
-        </md-tooltip>
-      </a>
-      <a class="sub-title" ui-sref="app.author({id: details.authors[0].id})" flex>
-        {{details.authors[0].names[0]}}
-        <md-tooltip md-delay="700">
-          {{details.authors[0].names[0]}}
-        </md-tooltip>
-      </a>
+<md-card class="circle-card" data-type="author" data-id="{{author.id}}">
+  <div class="image-wrapper material-shadow-z1" ui-sref="app.author({id: author.id})">
+    <div class="image-inner-wrapper">
+      <img class="image" ng-show="{{auhtor.pictures[0]}}" ng-src="{{auhtor.pictures[0]}}" alt="{{author.names[0]}}">
+      <div class="letter-art" style="background-color: #FFC107;">
+        <span>{{author.names[0][0]}}</span>
+      </div>
+    </div>
+  </div>
+  <md-card-content class="details">
+    <div class="details-inner">
+      <a class="title fade-out tooltip  gray" ui-sref="app.author({id: author.id})">{{author.names[0]}}</a>
+    </div>
+    <div class="menu-container">
+      <!-- <ng-md-icon class="menu-anchor" icon="more_vert" size="20"role="button" title="More options for {{author.names[0]}}" aria-label="More options for {{author.names[0]}}"></ng-md-icon> -->
     </div>
   </md-card-content>
 </md-card>
