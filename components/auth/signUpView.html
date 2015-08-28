@@ -1,0 +1,42 @@
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-sm="80" flex-gt-md="70" flex-gt-lg="60">
+    <h2 class="md-title" layout-padding>Create an account</h2>
+    <md-card>
+      <md-card-content>
+        <form ng-submit="signUp(user)">
+          <div layout layout-sm="column">
+            <md-input-container flex>
+              <label>First name</label>
+              <input ng-model="user.firstName">
+            </md-input-container>
+            <md-input-container flex>
+              <label>Last Name</label>
+              <input ng-model="user.lastName">
+            </md-input-container>
+          </div>
+          <md-input-container md-no-float>
+            <label>Username</label>
+            <input ng-model="user.login">
+          </md-input-container>
+
+          <md-input-container flex>
+            <label>Email</label>
+            <input ng-model="user.email">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Password</label>
+            <input type="password" ng-model="user.password">
+          </md-input-container>
+          <md-input-container flex>
+            <label>Password Confirmation</label>
+            <input type="password" ng-model="user.password_confirmation">
+          </md-input-container>
+        </md-card-content>
+        <div class="md-actions" layout="row" layout-align="end center">
+          <md-button class="md-primary">Create</md-button>
+          <md-button>Cancel</md-button>
+        </div>
+      </form>
+    </md-card>
+  </div>
+</div>
