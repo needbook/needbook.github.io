@@ -1,8 +1,8 @@
 <md-card class="material-shadow-z1" data-type="book" data-id="{{book.id}}">
   <div class="image-wrapper" ui-sref="app.book({id: book.id})">
     <div class="image-inner-wrapper">
-      <img class="image" ng-show="book.editions[0].cover" ng-src="{{book.editions[0].cover}}" alt="{{book.title}}">
-      <img class="image" ng-show="!book.editions[0].cover" src="assets/img/no_book_cover.48f403a7.jpg" alt="{{book.title}}">
+      <img class="image" ng-show="book.editions[0].default_image" ng-src="{{book.editions[0].default_image}}" alt="{{book.title}}">
+      <img class="image" ng-show="!book.editions[0].default_image" src="assets/img/no_book_cover.48f403a7.jpg" alt="{{book.title}}">
     </div>
     <div class="like-button-container">
       <ng-md-icon class="like-button" icon="favorite" role="button" title="More options for {{author.names[0]}}" aria-label="More options for {{author.names[0]}}"></ng-md-icon>
