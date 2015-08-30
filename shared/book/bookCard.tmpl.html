@@ -1,5 +1,5 @@
 <md-card class="material-shadow-z1" data-type="book" data-id="{{book.id}}">
-  <div class="image-wrapper" ui-sref="app.book({id: book.id})">
+  <div class="image-wrapper" ui-sref="app.book.details({bookID: book.id})">
     <div class="image-inner-wrapper">
       <img class="image" ng-show="book.editions[0].default_image" ng-src="{{book.editions[0].default_image}}" alt="{{book.title}}">
       <img class="image" ng-show="!book.editions[0].default_image" src="assets/img/no_book_cover.48f403a7.jpg" alt="{{book.title}}">
@@ -10,7 +10,7 @@
   </div>
   <md-card-content class="details" >
     <div class="details-inner" flex flex-wrap>
-      <a class="title fade-out" ui-sref="app.book({id: book.id})" flex>
+      <a class="title fade-out" ui-sref="app.book.details({bookID: book.id})" flex>
         {{book.title}}
         <md-tooltip md-delay="700">
           {{book.title}}
