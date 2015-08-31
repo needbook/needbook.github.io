@@ -1,1 +1,17 @@
-<p>This is the {{title}} view.</p>
+<div layout="row" layout-align="center center">
+  <div flex flex-gt-sm="80" flex-gt-md="70" flex-gt-lg="60">
+    <md-card>
+      <md-card-content>
+        <h2 class="md-title">Account</h2>
+        <p>
+          <span class="md-body-2">Username:</span> {{currentUser.login}}<br>
+          <span class="md-body-2">Fullname:</span> {{currentUser.firstName}} {{currentUser.lastName}}<br>
+          <span class="md-body-2">Email:</span> {{currentUser.email}} <span class="md-caption">({{currentUser.state}})</span><br>
+        </p>
+      </md-card-content>
+      <div class="md-actions" layout="row" layout-align="end center">
+        <md-button class="md-warn" ng-click="showConfirm()">Delete Account</md-button>
+      </div>
+    </md-card>
+  </div>
+</div>
