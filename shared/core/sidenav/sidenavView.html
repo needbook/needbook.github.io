@@ -1,8 +1,27 @@
 <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 core-sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-  <md-toolbar class="nav-toolbar"layout="column">
-    <div class="md-toolbar-tools" >
-      <img id="nav-logo" src="apple-touch-icon.png" alt="Needbook">
-      <h2 class="md-headline" id="nav-logo-text">Needbook</h2>
+  <md-toolbar class="profile-menu md-tall" layout="column" layout-padding>
+    <div class="profile-picture" layout-padding>
+      <img src="/assets/img/profile.df9bcc4d.png">
+
+    </div>
+    <div class="profile-info" flex>
+      <div>
+        <span class="md-body-2">{{currentUser.firstName}} {{currentUser.lastName}}</span>
+        <span class="md-body-1">{{currentUser.email}}</span>
+      </div>
+      <md-menu md-position-mode="target-right target" layout-align="end end">
+        <md-button aria-label="Open user interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+          <ng-md-icon md-menu-origin icon="arrow_drop_down" label="menu"></ng-md-icon>
+        </md-button>
+        <md-menu-content width="3">
+          <md-menu-item>
+            <md-button ng-click="logout()">
+              <ng-md-icon icon="logout" style="fill: #616161;"label="logout"></ng-md-icon>
+              Logout
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </div>
   </md-toolbar>
     <md-list id="nav-collections" class="nav-section">
