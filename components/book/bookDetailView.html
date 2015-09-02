@@ -2,7 +2,8 @@
   <div class="details-info" flex>
     <div class="info-container" flex>
       <div class="cover-container">
-        <img ng-src="{{edition.default_image}}" class="md-card-image" alt="{{book.title}}">
+        <img class="image" ng-if="edition.default_image" ng-src="{{edition.default_image}}" alt="{{book.title}}">
+        <img class="image" ng-if="!edition.default_image" src="assets/img/no_book_cover.jpg" alt="{{book.title}}">
       </div>
       <div class="info-box" flex>
         <h2 class="md-headline">{{book.title}}</h2>
@@ -45,4 +46,17 @@
   </md-card-content>
 </md-card>
 
-<!-- {{book}} -->
+<div class="lock-size" id="my-speed-dial" layout="row">
+  <md-fab-speed-dial md-open="demo.isOpen" md-direction="up" ng-class="demo.selectedMode">
+    <md-fab-trigger>
+      <md-button ng-hide="added" aria-label="menu" class="md-fab md-accent" ng-click="addToLibrary(edition.id)">
+        <md-tooltip md-direction="left">Add to Library</md-tooltip>
+        <ng-md-icon icon="add" label="add"></ng-md-icon>
+      </md-button>
+      <md-button ng-show="added" aria-label="menu" class="md-fab md-accent" ng-click="removeFromLibrary(edition.id)">
+        <md-tooltip md-direction="left">Remove from Library</md-tooltip>
+        <ng-md-icon icon="remove" label="remove"></ng-md-icon>
+      </md-button>
+    </md-fab-trigger>
+  </md-fab-speed-dial>
+</div>
