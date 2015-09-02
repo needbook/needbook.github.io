@@ -1,16 +1,19 @@
-<md-card>
-  <md-data-table-container>
-    <table md-data-table md-progress="deferred">
-      <thead md-order="query.order" md-trigger="onOrderChange">
-        <tr>
-          <th name="Name" order-by="name"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr md-auto-select ng-repeat="serie in series">
-          <td ui-sref="app.serie({id: serie.id})">{{serie.name}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </md-data-table-container>
-</md-card>
+<section flex layout="row"  layout-wrap layout-margin layout-fill layout-align="space-around center">
+  <empty-content ng-if="!series.length" icon="layers" text="{{emptyMsg}}"></empty-content>
+  <md-card ng-if="series.length">
+    <md-data-table-container>
+      <table md-data-table md-progress="deferred">
+        <thead md-order="query.order" md-trigger="onOrderChange">
+          <tr>
+            <th name="Name" order-by="name"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr md-auto-select ng-repeat="serie in series">
+            <td ui-sref="app.serie({id: serie.id})">{{serie.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </md-data-table-container>
+  </md-card>
+</section>

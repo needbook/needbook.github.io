@@ -1,3 +1,6 @@
-<section class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
-  <book-card hovering="md-whiteframe-z4" ng-repeat="book in books" book="book"></book-card>
+<section ng-hide="isLoading" class="flex-container" flex layout="row"  layout-wrap layout-margin layout-fill layout-align="space-around center">
+  <empty-content ng-if="!books.length"  icon="{{icon || 'book'}}" text="{{emptyMsg}}"></empty-content>
+  <book-card ng-if="books.length"  hovering="md-whiteframe-z4" ng-repeat="book in books" book="book"></book-card>
 </section>
+
+<loading-circle loading="isLoading"></loading-circle>
