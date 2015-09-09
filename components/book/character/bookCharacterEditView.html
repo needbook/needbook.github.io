@@ -1,0 +1,43 @@
+<section>
+  <h1>
+    Traits
+    <md-button class="md-primary" ng-click="addTraitDialog();">Add a trait</md-button>
+  </h1>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="trait in character.traits">
+      <div class="md-list-item-text">
+        <h3>{{trait.trait.names.en_US}} <md-icon ng-if="trait.trait.primary">star_rate</md-icon></h3>
+        <p>{{trait.values.en_US.join(', ')}}</p>
+      </div>
+    </md-list-item>
+    <md-list-item ng-if="!hasKeys(character.traits)">
+      <div class="md-list-item-text">
+        No traits available.
+      </div>
+    </md-list-item>
+  </md-list>
+</section>
+
+<section>
+  <h1>
+    Links
+    <md-button class="md-primary" ng-click="addLinkDialog();">Add a link</md-button>
+  </h1>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="link in character.links">
+      <div class="md-list-item-text">
+        <h3>{{link.link.names.en_US}}</h3>
+        <p>{{link.to.traits.names.values.en_US[0]}}</p>
+      </div>
+    </md-list-item>
+    <md-list-item ng-if="!hasKeys(character.links)">
+      <div class="md-list-item-text">
+        No links available.
+      </div>
+    </md-list-item>
+  </md-list>
+</section>
+
+<section>
+  <md-button class="md-primary" ng-click="save();">Save</md-button>
+</section>

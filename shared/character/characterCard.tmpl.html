@@ -1,0 +1,12 @@
+<md-card class="material-shadow-z1" data-type="character" data-id="{{character.id}}">
+  <md-card-content class="details" >
+    <div class="details-inner" flex flex-wrap>
+      <a class="title fade-out" ui-sref="app.book.character.edit({ charID: character.id })" flex>
+        {{character.traits.names.values.en_US.join(', ')}}
+        <md-tooltip md-delay="700">
+        {{character.traits.names.values.en_US.join(', ')}}
+        </md-tooltip>
+      </a>
+    </div>
+  </md-card-content>
+</md-card>

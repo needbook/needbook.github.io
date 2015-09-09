@@ -1,1 +1,7 @@
-Book Character List View
+<section>
+  <md-button class="md-primary" ui-sref=".new()">Add a character</md-button>
+</section>
+<section class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
+  <character-card hovering="md-whiteframe-z4" ng-repeat="character in characters" character="character">
+  </character-card>
+</section>

@@ -1,0 +1,54 @@
+<md-dialog flex="60">
+  <md-dialog-content>
+    <h1>Add trait</h1>
+    <md-autocomplete
+      md-selected-item="trait.trait"
+      md-search-text="searchText"
+      md-items="trait_type in querySearch(searchText)"
+      md-item-text="trait_type.names.en_US"
+      md-min-length="0"
+      placeholder="Type name">
+      <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{trait_type.names.en_US}}</span>
+      </md-item-template>
+      <md-not-found>
+        No matches found.
+      </md-not-found>
+    </md-autocomplete>
+    Do you want to <md-button class="md-primary" ng-click="newTraitType()">create a new one</md-button>?
+    <div ng-show="trait.trait && trait.trait.possible_values.length == 0">
+      <h2>Values</h2>
+      <md-list>
+        <md-list-item class="md-2-line" ng-repeat="value in trait.values.en_US">
+          <md-input-container>
+            <input type="text" ng-model="value">
+          </md-input-container>
+        </md-list-item>
+      </md-list>
+      <div layout flex>
+        <md-input-container layout flex ng-show="trait.trait.multiple == true || trait.values.en_US.length == 0">
+          <label>New Value</label>
+          <input type="text" ng-model="newTraitValue">
+        </md-input-container>
+        <md-button ng-click="addTraitValue()" flex="25">Add</md-button>
+      </div>
+    </div>
+    <div ng-show="trait.trait">
+      <h2>Locations</h2>
+      <div layout flex>
+        <md-input-container layout flex>
+          <label>Begin location</label>
+          <input type="number" ng-model="trait.begin_locations[0].location">
+        </md-input-container>
+        <md-input-container layout flex>
+          <label>End location</label>
+          <input type="number" ng-model="trait.end_locations[0].location">
+        </md-input-container>
+      </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions">
+    <md-button ng-click="cancelDialog()" class="md-primary">Cancel</md-button>
+    <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
+  </div>
+</md-dialog>

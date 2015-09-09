@@ -1,0 +1,33 @@
+<md-dialog flex="60">
+  <md-dialog-content>
+    <h1>Add link type</h1>
+    <md-input-container>
+      <input type="text" placeholder="Name" ng-model="link_type.names.en_US">
+    </md-input-container>
+    <h2>Tree order</h2>
+    <md-radio-group ng-model="link_type.tree_order">
+      <md-radio-button value="indifferent" class="md-primary">Indifferent</md-radio-button>
+      <md-radio-button value="asc">Ascending</md-radio-button>
+      <md-radio-button value="desc">Descending</md-radio-button>
+    </md-radio-group>
+    <h2>Reverse link</h2>
+    <md-autocomplete
+      md-selected-item="link_type.reverse_link_type"
+      md-search-text="searchText"
+      md-items="link_type in querySearch(searchText)"
+      md-item-text="link_type.names.en_US"
+      md-min-length="0"
+      placeholder="Reverse link type name">
+      <md-item-template>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{link_type.names.en_US}}</span>
+      </md-item-template>
+      <md-not-found>
+        No matches found.
+      </md-not-found>
+    </md-autocomplete>
+  </md-dialog-content>
+  <div class="md-actions">
+    <md-button ng-click="cancelDialog()" class="md-primary">Cancel</md-button>
+    <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
+  </div>
+</md-dialog>
