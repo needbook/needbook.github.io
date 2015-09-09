@@ -11,7 +11,11 @@
       <md-radio-button value="desc">Descending</md-radio-button>
     </md-radio-group>
     <h2>Reverse link</h2>
+    <div layout flex>
+      <md-checkbox ng-model="link_type.reverse_itself" aria-label="Itself">Itself</md-checkbox>
+    </div>
     <md-autocomplete
+      ng-show="!link_type.reverse_itself"
       md-selected-item="link_type.reverse_link_type"
       md-search-text="searchText"
       md-items="link_type in querySearch(searchText)"
