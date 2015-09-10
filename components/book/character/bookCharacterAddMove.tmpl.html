@@ -1,0 +1,56 @@
+<md-dialog flex="60">
+  <md-dialog-content>
+    <h1>Add move</h1>
+    <div>
+      <h2>From</h2>
+      <md-autocomplete
+        md-selected-item="move.from"
+        md-search-text="searchText"
+        md-items="place in querySearch(searchText)"
+        md-item-text="place.traits.names.values.en_US.join(', ')"
+        md-min-length="0"
+        placeholder="Place name">
+        <md-item-template>
+          <span md-highlight-text="searchText" md-highlight-flags="^i">{{place.traits.names.values.en_US.join(', ')}}</span>
+        </md-item-template>
+        <md-not-found>
+          No matches found.
+        </md-not-found>
+      </md-autocomplete>
+    </div>
+    <div>
+      <h2>To</h2>
+      <md-autocomplete
+        md-selected-item="move.to"
+        md-search-text="searchTextTo"
+        md-items="place in querySearch(searchTextTo)"
+        md-item-text="place.traits.names.values.en_US.join(', ')"
+        md-min-length="0"
+        placeholder="Place name">
+        <md-item-template>
+          <span md-highlight-text="searchTextTo" md-highlight-flags="^i">{{place.traits.names.values.en_US.join(', ')}}</span>
+        </md-item-template>
+        <md-not-found>
+          No matches found.
+        </md-not-found>
+      </md-autocomplete>
+    </div>
+    <div ng-show="move.from && move.to">
+      <h2>Locations</h2>
+      <div layout flex>
+        <md-input-container layout flex>
+          <label>Begin location</label>
+          <input type="number" ng-model="move.begin_locations[0].location">
+        </md-input-container>
+        <md-input-container layout flex>
+          <label>End location</label>
+          <input type="number" ng-model="move.end_locations[0].location">
+        </md-input-container>
+      </div>
+    </div>
+  </md-dialog-content>
+  <div class="md-actions">
+    <md-button ng-click="cancelDialog()" class="md-primary">Cancel</md-button>
+    <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
+  </div>
+</md-dialog>

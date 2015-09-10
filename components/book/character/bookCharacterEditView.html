@@ -39,5 +39,25 @@
 </section>
 
 <section>
+  <h1>
+    Moves
+    <md-button class="md-primary" ng-click="addMoveDialog();">Add a move</md-button>
+  </h1>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="move in character.moves">
+      <div class="md-list-item-text">
+        <h3>From {{move.from.traits.names.values.en_US.join(', ')}}</h3>
+        <p>To {{move.to.traits.names.values.en_US.join(', ')}}</p>
+      </div>
+    </md-list-item>
+    <md-list-item ng-if="!hasKeys(character.moves)">
+      <div class="md-list-item-text">
+        No moves available.
+      </div>
+    </md-list-item>
+  </md-list>
+</section>
+
+<section>
   <md-button class="md-primary" ng-click="save();">Save</md-button>
 </section>

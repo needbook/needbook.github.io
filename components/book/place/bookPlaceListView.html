@@ -1,0 +1,6 @@
+<section>
+  <md-button class="md-primary" ui-sref=".new()">Add a place</md-button>
+</section>
+<section class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
+  <place-card hovering="md-whiteframe-z4" ng-repeat="place in places" place="place"></place-card>
+</section>

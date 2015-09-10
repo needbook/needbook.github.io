@@ -1,0 +1,12 @@
+<md-card class="material-shadow-z1" data-type="place" data-id="{{place.id}}">
+  <md-card-content class="details" >
+    <div class="details-inner" flex flex-wrap>
+      <a class="title fade-out" ui-sref="app.book.place.edit({ placeID: place.id })" flex>
+        {{place.traits.names.values.en_US.join(', ')}}
+        <md-tooltip md-delay="700">
+        {{place.traits.names.values.en_US.join(', ')}}
+        </md-tooltip>
+      </a>
+    </div>
+  </md-card-content>
+</md-card>

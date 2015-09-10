@@ -1,0 +1,34 @@
+<section>
+  <h1>Coordinates</h1>
+  <div layout="row" flex>
+    <md-input-container flex>
+      <label>Longitude</label>
+      <input type="number" ng-model="place.coordinates.longitude">
+    </md-input-container>
+    <md-input-container flex>
+      <label>Latitude</label>
+      <input type="number" ng-model="place.coordinates.latitude">
+    </md-input-container>
+  </div>
+  <h1>
+    Traits
+    <md-button class="md-primary" ng-click="addTraitDialog();">Add a trait</md-button>
+  </h1>
+  <md-list>
+    <md-list-item class="md-2-line" ng-repeat="trait in place.traits">
+      <div class="md-list-item-text">
+        <h3>{{trait.trait.names.en_US}} <md-icon ng-if="trait.trait.primary">star_rate</md-icon></h3>
+        <p>{{trait.values.en_US.join(', ')}}</p>
+      </div>
+    </md-list-item>
+    <md-list-item ng-if="!hasKeys(place.traits)">
+      <div class="md-list-item-text">
+        No traits available.
+      </div>
+    </md-list-item>
+  </md-list>
+</section>
+
+<section>
+  <md-button class="md-primary" ng-click="save();">Save</md-button>
+</section>
