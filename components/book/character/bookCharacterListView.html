@@ -1,7 +1,23 @@
-<section>
-  <md-button class="md-primary" ui-sref=".new()">Add a character</md-button>
-</section>
-<section class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
-  <character-card hovering="md-whiteframe-z4" ng-repeat="character in characters" character="character">
-  </character-card>
-</section>
+<md-card class="md-whiteframe-z1">
+  <md-toolbar class="md-theme-light" layout="colum">
+    <h2 class="md-toolbar-tools">
+      <span>Characters</span>
+      <span flex></span>
+      <md-button ui-sref=".new()">Add</md-button>
+    </h2>
+    <md-progress-linear md-mode="indeterminate" ng-show="progress"></md-progress-linear>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-list-item ng-repeat="character in characters">
+        <a ui-sref="app.book.character.edit({ charID: character.id })">
+          {{character.traits.names.values.en_US.join(', ')}}
+        </a>
+        <md-divider ng-if="!$last"></md-divider>
+      </md-list-item>
+      <md-list-item ng-show="characters.length == 0 && !progress">
+        No characters found.
+      </md-list-item>
+    </md-list>
+  </md-content>
+</md-card>
