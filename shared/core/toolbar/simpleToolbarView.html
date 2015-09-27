@@ -12,15 +12,17 @@
       </md-button>
       <h2><span>{{pageTitle || ''}}</span></h2>
     </div>
-    <div flex="50" layout-fill layout-padding>
+    <div flex="50" layout-fill layout-padding >
       <search-input></search-input>
     </div>
-    <div flex style="display: inline-flex;" layout-align="end center">
-
+    <div flex layout-align="end end">
+      <!-- <md-button class="md-icon-button" aria-label="Search" ui-sref="app.search" show-sm>
+        <ng-md-icon icon="search"></ng-md-icon>
+      </md-button> -->
     </div>
   </div>
   <div class="md-toolbar-tools md-toolbar-tools-bottom" ng-if="tabs.length > 0">
-    <md-tabs class="md-primary" md-selected="selectedIndex" flex="70" md-stretch-tabs md-border-bottom md-autoselect>
+    <md-tabs class="md-primary" md-selected="selectedIndex" md-stretch-tabs md-border-bottom md-autoselect>
       <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" ui-sref="{{tab.state}}"></md-tab>
     </md-tabs>
   </div>

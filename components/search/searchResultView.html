@@ -10,8 +10,8 @@
       <h2 class="title">Books</h2>
       <md-button class="md-primary" ng-disabled="true">See all</md-button>
     </div>
-    <section class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
-      <book-card hovering="md-whiteframe-z4" ng-repeat="book in results.book" book="book"></book-card>
+    <section class="flex-container">
+      <md-card book-card class="flex-item" ng-repeat="book in results.book" book="book"></md-card>
     </section>
   </span>
   <span ng-show="results.author.length">
