@@ -1,28 +1,19 @@
-<md-toolbar class="md-whiteframe-z2" ng-class="{'md-tall': tabs.length > 0}" layout="column">
-  <div class="md-toolbar-tools" flex>
-    <div flex ng-if="!$state.is('app.search')" style="display: inline-flex;" layout-align="start center">
-      <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleLeft()" hide-gt-md>
-        <ng-md-icon icon="menu"></ng-md-icon>
-      </md-button>
-      <h2><span>{{pageTitle || ''}}</span></h2>
+<md-toolbar class="md-whiteframe-z2" ng-class="{'md-tall': tabs.length > 0}">
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" ng-click="toggleLeft()" aria-label="Settings" hide-gt-md>
+      <ng-md-icon icon="menu"></ng-md-icon>
+    </md-button>
+    <div class="toolbar-container">
+      <h2 class="title"><span>{{pageTitle || ''}}</span></h2>
+      <search-input hide-sm></search-input>
+      <span hide-sm></span>
     </div>
-    <div flex ng-if="$state.is('app.search')">
-      <md-button class="md-icon-button" aria-label="Settings" ng-click="back()" hide-gt-md>
-        <ng-md-icon icon="menu"></ng-md-icon>
-      </md-button>
-      <h2><span>{{pageTitle || ''}}</span></h2>
-    </div>
-    <div flex="50" layout-fill layout-padding >
-      <search-input></search-input>
-    </div>
-    <div flex layout-align="end end">
-      <!-- <md-button class="md-icon-button" aria-label="Search" ui-sref="app.search" show-sm>
-        <ng-md-icon icon="search"></ng-md-icon>
-      </md-button> -->
-    </div>
+    <md-button  class="md-icon-button" aria-label="Search" hide-gt-sm>
+      <ng-md-icon icon="search"></ng-md-icon>
+    </md-button>
   </div>
-  <div class="md-toolbar-tools md-toolbar-tools-bottom" ng-if="tabs.length > 0">
-    <md-tabs class="md-primary" md-selected="selectedIndex" md-stretch-tabs md-border-bottom md-autoselect>
+  <div class="md-toolbar-tools md-toolbar-tools-bottom toolbar-container" ng-if="tabs.length > 0">
+    <md-tabs class="md-primary" md-selected="selectedIndex" md-stretch-tabs md-autoselect>
       <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" ui-sref="{{tab.state}}"></md-tab>
     </md-tabs>
   </div>
