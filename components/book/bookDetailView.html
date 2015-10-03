@@ -1,53 +1,61 @@
 <md-card class="book-details">
-  <div class="details-info" flex>
-    <div class="info-container" flex>
-      <div class="cover-container">
-        <img class="image" ng-if="edition.default_image" ng-src="{{edition.default_image}}" alt="{{book.title}}">
-        <img class="image" ng-if="!edition.default_image" src="assets/img/no_book_cover.jpg" alt="{{book.title}}">
+  <section class="info-container">
+    <div class="cover">
+      <img class="image" ng-if="edition.default_image" ng-src="{{edition.default_image}}" alt="{{book.title}}">
+      <img class="image" ng-if="!edition.default_image" src="assets/img/no_book_cover.jpg" alt="{{book.title}}">
+    </div>
+    <div class="info">
+      <h2 class="title md-headline">{{book.title}}</h2>
+      <div class="authors">
+        <span ng-repeat="author in authors">
+          <a class="author-name md-subhead" ui-sref="app.author({id: author.id})">
+            {{($last && !$first) ? ' and ' : ''}}{{author.names[0]}}{{(($first && !$last) || $middle) ? ', ' : ''}}
+          </a>
+        </span>
       </div>
-      <div class="info-box" flex>
-        <h2 class="md-headline">{{book.title}}</h2>
-        <div class="left-info">
-          <!-- <a ui-sref="app.author({id: author.id})">
-            <img class="author-icon" ng-src="{{author.pictures[0]}}" alt="{{author.name[0]}}">
-          </a> -->
-          <div class="author-details">
-            <a class="md-body-2" ui-sref="app.author({id: author.id})">
-              {{author.names[0]}}
-            </a></br>
-            <span class="md-caption" ng-repeat="edition in book.editions">{{edition.editor}}{{$last ? '' : ', '}}</span>
-          </div>
+      <div class="edition md-body-2">
+        {{edition.editor}} - {{edition.pages}} pages
+      </div>
+      <div class="publish-date md-body-2">
+        {{edition.publish_date | date:'longDate'}}
+      </div>
+      <div class="editions" ng-if="editions.length > 1">
+        All editions:
+        <span class="md-body-2" ng-repeat="edition in book.editions">
+          {{edition.editor}}{{$last ? '' : ', '}}
+        </span>
+      </div>
+    </div>
+  </section>
+  <md-card-content>
+    <p class="description" ng-bind-html="book.description"></p>
+    <md-divider></md-divider>
+    <section class="additional-info">
+      <h4 class="md-subhead">Additional Information</h4>
+      <div class="additional-info-container">
+        <div>
+          <div class="meta-title md-body-2">serie</div>
+          <div class="meta-info md-body-1">{{book.serie.name}}</div>
+        </div>
+        <div>
+          <div class="meta-title md-body-2">isbn</div>
+          <div class="meta-infomd-body-1">{{edition.isbn}}</div>
+        </div>
+        <div>
+          <div class="meta-title md-body-2">asin</div>
+          <div class="meta-infomd-body-1">{{edition.asin}}</div>
+        </div>
+        <div>
+          <div class="meta-title md-body-2">ean</div>
+          <div class="meta-infomd-body-1 content">{{edition.ean}}</div>
         </div>
       </div>
-    </div>
-  </div>
-  <md-card-content>
-    <p class="md-body-1 book-description" ng-bind-html="book.description"></p>
-    <md-divider></md-divider>
-    <h4 class="md-body-1 heading">Additional Information</h4>
-    <div class="details-section-contents" layout="row" layout-align="space-around center">
-      <div class="meta-info">
-        <div class="md-body-2">Serie</div>
-        <div class="md-body-1 content">{{book.serie.name}}</div>
-      </div>
-      <div class="meta-info">
-        <div class="md-body-2">ISBN</div>
-        <div class="md-body-1 content">{{edition.isbn}}</div>
-      </div>
-      <div class="meta-info">
-        <div class="md-body-2">ASIN</div>
-        <div class="md-body-1 content">{{edition.asin}}</div>
-      </div>
-      <div class="meta-info">
-        <div class="md-body-2">EAN</div>
-        <div class="md-body-1 content">{{edition.ean}}</div>
-      </div>
-    </div>
+    </section>
   </md-card-content>
 </md-card>
 
-<div class="lock-size" id="my-speed-dial" layout="row">
-  <md-fab-speed-dial md-open="demo.isOpen" md-direction="up" ng-class="demo.selectedMode">
+<!-- <div class="lock-size md-fab-bottom-right" > -->
+  <md-fab-speed-dial id="my-speed-dial" md-open="demo.isOpen" md-direction="up" ng-class="demo.selectedMode">
     <md-fab-trigger>
       <md-button ng-hide="added" aria-label="menu" class="md-fab md-accent" ng-click="addToLibrary(edition.id)">
         <md-tooltip md-direction="left">Add to Library</md-tooltip>
@@ -59,4 +67,4 @@
       </md-button>
     </md-fab-trigger>
   </md-fab-speed-dial>
-</div>
+<!-- </div> -->

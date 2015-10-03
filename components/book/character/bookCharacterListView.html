@@ -10,7 +10,7 @@
   <md-content>
     <md-list>
       <md-list-item ng-repeat="character in characters">
-        <a ui-sref="app.book.character.edit({ charID: character.id })">
+        <a ui-sref="app.book.character({ charID: character.id })">
           {{character.traits.names.values.en_US.join(', ')}}
         </a>
         <md-divider ng-if="!$last"></md-divider>
