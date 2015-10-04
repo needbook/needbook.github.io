@@ -4,7 +4,7 @@
       <ng-md-icon icon="menu"></ng-md-icon>
     </md-button>
     <div class="toolbar-container">
-      <h2 class="title"><span>{{pageTitle || ''}}</span></h2>
+      <h2 class="title"><span>{{pageTitle || '' | i18next}}</span></h2>
       <search-input hide-sm></search-input>
       <span hide-sm></span>
     </div>
@@ -14,7 +14,7 @@
   </div>
   <div class="md-toolbar-tools md-toolbar-tools-bottom toolbar-container" ng-if="tabs.length > 0">
     <md-tabs class="md-primary" md-selected="selectedIndex" md-stretch-tabs md-autoselect>
-      <md-tab ng-repeat="tab in tabs" label="{{tab.title}}" ui-sref="{{tab.state}}"></md-tab>
+      <md-tab ng-repeat="tab in tabs" label="{{tab.title | i18next}}" ui-sref="{{tab.state}}"></md-tab>
     </md-tabs>
   </div>
 </md-toolbar>

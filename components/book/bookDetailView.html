@@ -14,13 +14,13 @@
         </span>
       </div>
       <div class="edition md-body-2">
-        {{edition.editor}} - {{edition.pages}} pages
+        {{edition.editor}} - {{edition.pages}} {{'book.pages' | i18next}}
       </div>
       <div class="publish-date md-body-2">
         {{edition.publish_date | date:'longDate'}}
       </div>
       <div class="editions" ng-if="editions.length > 1">
-        All editions:
+        {{'book.editions' | i18next}}:
         <span class="md-body-2" ng-repeat="edition in book.editions">
           {{edition.editor}}{{$last ? '' : ', '}}
         </span>
@@ -31,10 +31,10 @@
     <p class="description" ng-bind-html="book.description"></p>
     <md-divider></md-divider>
     <section class="additional-info">
-      <h4 class="md-subhead">Additional Information</h4>
+      <h4 class="md-subhead" ng-i18next="book.additional-information">Additional Information</h4>
       <div class="additional-info-container">
         <div>
-          <div class="meta-title md-body-2">serie</div>
+          <div class="meta-title md-body-2" ng-i18next="serie.title"></div>
           <div class="meta-info md-body-1">{{book.serie.name}}</div>
         </div>
         <div>
@@ -58,12 +58,12 @@
   <md-fab-speed-dial id="my-speed-dial" md-open="demo.isOpen" md-direction="up" ng-class="demo.selectedMode">
     <md-fab-trigger>
       <md-button ng-hide="added" aria-label="menu" class="md-fab md-accent" ng-click="addToLibrary(edition.id)">
-        <md-tooltip md-direction="left">Add to Library</md-tooltip>
-        <ng-md-icon icon="add" label="add"></ng-md-icon>
+        <md-tooltip md-direction="left">{{'book.add-to-library' | i18next}}</md-tooltip>
+        <ng-md-icon icon="add" label="{{'action.add' | i18next}}"></ng-md-icon>
       </md-button>
       <md-button ng-show="added" aria-label="menu" class="md-fab md-accent" ng-click="removeFromLibrary(edition.id)">
-        <md-tooltip md-direction="left">Remove from Library</md-tooltip>
-        <ng-md-icon icon="remove" label="remove"></ng-md-icon>
+        <md-tooltip md-direction="left">{{'book.remove-from-library' | i18next}}</md-tooltip>
+        <ng-md-icon icon="remove" label="{{'action.remove' | i18next}}"></ng-md-icon>
       </md-button>
     </md-fab-trigger>
   </md-fab-speed-dial>

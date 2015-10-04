@@ -1,5 +1,5 @@
 <section ng-hide="isLoading" class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
-  <empty-content ng-if="!auhtors.length" icon="face" text="{{emptyMsg}}"></empty-content>
+  <empty-content ng-if="isEmpty" icon="face" text="{{emptyMsg}}"></empty-content>
   <author-card ng-if="auhtors.length" ng-repeat="author in authors" author="author"></author-card>
 </section>
 

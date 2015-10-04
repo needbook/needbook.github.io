@@ -1,0 +1,89 @@
+{
+  "account": {
+    "title": "My Account",
+    "username": "Username",
+    "first-name": "First name",
+    "last-name": "Last name",
+    "email": "Email",
+    "password": "Password",
+    "confirm-password": "Confirm password",
+    "delete": "Delete my account"
+  },
+  "language": {
+    "title": "Language",
+    "french": "French",
+    "english": "English",
+    "cta": "Change language"
+  },
+  "common": {
+    "community": "Community",
+    "management": "Management",
+    "and": "and",
+    "more": "more"
+  },
+  "action": {
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "add": "Add",
+    "remove": "Remove"
+  },
+  "auth": {
+    "sign-in": "Sign In",
+    "sign-up": "Sign Up",
+    "sign-out": "Logout"
+  },
+  "library": {
+    "title": "My Library"
+  },
+  "book": {
+    "title": "Book",
+    "details": "Details",
+    "favorite": "Favorite",
+    "pages": "Pages",
+    "editions": "Editions",
+    "additional-information": "Additional information",
+    "add-to-library": "Add to Library",
+    "remove-from-library": "Remove from Library",
+    "not-found": "No books found",
+    "not-found-library": "No books found in your Library",
+    "favorite-not-found": "No favorite books"
+  },
+  "characters": {
+    "title": "Characters",
+    "not-found": "No characters found"
+  },
+  "places": {
+    "title": "Places",
+    "not-found": "No places found"
+  },
+  "author": {
+    "title": "Author",
+    "not-found": "No authors found",
+    "not-found-library": "No authors found in your Library",
+    "books-not-found": "No books found"
+  },
+  "serie": {
+    "title": "Serie",
+    "not-found-library": "No series found in your Library"
+  },
+  "discover": {
+    "title": "Discover"
+  },
+  "feedback": {
+    "title": "Send feedback"
+  },
+  "forum": {
+    "title": "Forum"
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search book",
+    "not-found": "No results found"
+  },
+  "settings": {
+    "title": "Settings"
+  },
+  "top-books": {
+    "title": "Top Books"
+  }
+}

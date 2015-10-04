@@ -10,6 +10,14 @@
       <md-radio-button value="asc">Ascending</md-radio-button>
       <md-radio-button value="desc">Descending</md-radio-button>
     </md-radio-group>
+    <h2>Sentences</h2>
+    <div layout flex>
+      Character
+      <md-input-container>
+        <input type="text" placeholder="sentence" ng-model="link_type.sentences.en_US" />
+      </md-input-container>
+      Character.
+    </div>
     <h2>Reverse link</h2>
     <div layout flex>
       <md-checkbox ng-model="link_type.reverse_itself" aria-label="Itself">Itself</md-checkbox>

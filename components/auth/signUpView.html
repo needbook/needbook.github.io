@@ -1,40 +1,40 @@
 <div layout="row" layout-align="center center">
   <div flex flex-gt-sm="80" flex-gt-md="70" flex-gt-lg="60">
-    <h2 class="md-title" layout-padding>Create an account</h2>
+    <h2 class="md-title" ng-i18next="auth.sign-up" layout-padding></h2>
     <md-card>
       <md-card-content>
         <form ng-submit="signUp(user)">
           <div layout layout-sm="column">
             <md-input-container flex>
-              <label>First name</label>
+              <label ng-i18next="account.first-name"></label>
               <input ng-model="user.firstName">
             </md-input-container>
             <md-input-container flex>
-              <label>Last Name</label>
+              <label ng-i18next="account.last-name"></label>
               <input ng-model="user.lastName">
             </md-input-container>
           </div>
           <md-input-container md-no-float>
-            <label>Username</label>
+            <label ng-i18next="account.username"></label>
             <input ng-model="user.login">
           </md-input-container>
 
           <md-input-container flex>
-            <label>Email</label>
+            <label ng-i18next="account.email"></label>
             <input type="email" ng-model="user.email">
           </md-input-container>
           <md-input-container flex>
-            <label>Password</label>
+            <label ng-i18next="account.password"></label>
             <input type="password" ng-model="user.password">
           </md-input-container>
           <md-input-container flex>
-            <label>Password Confirmation</label>
+            <label ng-i18next="account.confirm-password"></label>
             <input type="password" ng-model="user.password_confirm">
           </md-input-container>
         </md-card-content>
         <div class="md-actions" layout="row" layout-align="end center">
-          <md-button class="md-primary">Create</md-button>
-          <md-button>Cancel</md-button>
+          <md-button class="md-primary" ng-i18next="action.submit"></md-button>
+          <md-button ng-i18next="action.cancel">Cancel</md-button>
         </div>
       </form>
     </md-card>

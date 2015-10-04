@@ -1,5 +1,5 @@
 <section flex layout="row"  layout-wrap layout-margin layout-fill layout-align="space-around center">
-  <empty-content ng-if="!series.length" icon="layers" text="{{emptyMsg}}"></empty-content>
+  <empty-content ng-if="isEmpty" icon="layers" text="{{emptyMsg}}"></empty-content>
   <md-card ng-if="series.length">
     <md-data-table-container>
       <table md-data-table md-progress="deferred">
