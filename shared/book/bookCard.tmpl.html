@@ -16,5 +16,11 @@
         {{book.authors[0].names[0]}}
       </md-tooltip>
     </a>
+    <span class="sub-title" ng-if="bookId">
+      {{book.default_edition.editor}}
+      <md-tooltip md-delay="700">
+        {{book.default_edition.editor}}
+      </md-tooltip>
+    </span>
   </div>
 </md-card-content>
