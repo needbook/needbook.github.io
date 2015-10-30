@@ -1,2 +1,4 @@
-<ng-md-icon class="search-icon" icon="search" label="search"></ng-md-icon>
-<input class="search-input" ng-model="query" ng-model-options="{debounce:750}" role="search" placeholder="Search book" aria-label="Search book" ng-focus="true" ng-change="search(query)">
+<form ng-submit="search(query)">
+  <ng-md-icon class="search-icon" icon="search" label="{{'search.title' | i18next}}"></ng-md-icon>
+  <input class="search-input" ng-model="query" role="search" placeholder="{{'search.placeholder' | i18next}}" aria-label="{{'search.title' | i18next}}" ng-focus="true" >
+</form>

@@ -4,13 +4,25 @@
       <md-card-content>
         <h2 class="md-title">Account</h2>
         <p>
-          <span class="md-body-2">Username:</span> {{currentUser.login}}<br>
-          <span class="md-body-2">Fullname:</span> {{currentUser.firstName}} {{currentUser.lastName}}<br>
-          <span class="md-body-2">Email:</span> {{currentUser.email}} <span class="md-caption">({{currentUser.state}})</span><br>
+          <span class="md-body-2">{{'account.username' | i18next }}:</span> {{currentUser.login}}<br>
+          <span class="md-body-2">{{'account.last-name' | i18next }}:</span> {{currentUser.firstName}} {{currentUser.lastName}}<br>
+          <span class="md-body-2">{{'account.email' | i18next }}:</span> {{currentUser.email}} <span class="md-caption">({{currentUser.state}})</span><br>
         </p>
+        <md-input-container>
+          <label ng-i18next="language.title"></label>
+          <md-select ng-model="lng">
+            <md-option value="fr">
+              {{'language.french' | i18next}}
+            </md-option>
+            <md-option value="en">
+              {{'language.english' | i18next}}
+            </md-option>
+          </md-select>
+        </md-input-container>
       </md-card-content>
-      <div class="md-actions" layout="row" layout-align="end center">
-        <md-button class="md-warn" ng-click="showConfirm()">Delete Account</md-button>
+      <div class="md-actions" layout="row" layout-align="space-between center" >
+        <md-button class="md-primary" ng-click="changeLng(lng)" ng-i18next="language.cta"></md-button>
+        <md-button class="md-warn" ng-click="showConfirm()" ng-i18next="account.delete" ng-disabled="true"></md-button>
       </div>
     </md-card>
   </div>

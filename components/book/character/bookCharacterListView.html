@@ -1,23 +1,19 @@
-<md-card class="md-whiteframe-z1">
-  <md-toolbar class="md-theme-light" layout="colum">
-    <h2 class="md-toolbar-tools">
-      <span>Characters</span>
-      <span flex></span>
-      <md-button ui-sref=".new()">Add</md-button>
-    </h2>
-    <md-progress-linear md-mode="indeterminate" ng-show="progress"></md-progress-linear>
-  </md-toolbar>
-  <md-content>
+<div class="characters-container">
+  <section class="characters-list">
     <md-list>
-      <md-list-item ng-repeat="character in characters">
-        <a ui-sref="app.book.character({ charID: character.id })">
-          {{character.traits.names.values.en_US.join(', ')}}
-        </a>
-        <md-divider ng-if="!$last"></md-divider>
+      <md-list-item ng-repeat="character in characters" ng-click="displayDetails(character.id)" ng-class="{'active': character.id === character_details.id}">
+        <img src="assets/img/profile.png" class="md-avatar" alt="{{character.indexedTraits().names[character.indexedTraits().names.length - 1].values.en_US.join(', ')}}"/>
+        <p>{{character.indexedTraits().names[character.indexedTraits().names.length - 1].values.en_US.join(', ')}}</p>
       </md-list-item>
       <md-list-item ng-show="characters.length == 0 && !progress">
         No characters found.
       </md-list-item>
+      <md-list-item>
+        <md-button ui-sref="app.book.characters.new()">Add character</md-button>
+      </md-list-item>
     </md-list>
-  </md-content>
-</md-card>
+  </section>
+  <section class="character-details">
+    <ng-include src="'components/book/character/bookCharacterDetailView.html'"></ng-include>
+  </section>
+</div>

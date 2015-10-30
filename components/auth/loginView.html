@@ -1,22 +1,22 @@
 <div layout="row" layout-align="center center">
   <div flex flex-gt-sm="80" flex-gt-md="70" flex-gt-lg="60">
-    <h2 class="md-title" layout-padding>Login</h2>
+    <h2 class="md-title" ng-i18next="auth.sign-in" layout-padding></h2>
     <md-card>
       <md-card-content>
         <form ng-submit="login(credentials)">
           <md-input-container >
-            <label>Username</label>
+            <label ng-i18next="account.username"></label>
             <input ng-model="credentials.login">
           </md-input-container>
 
           <md-input-container flex>
-            <label>Password</label>
+            <label ng-i18next="account.password"></label>
             <input type="password" ng-model="credentials.password">
           </md-input-container>
         </md-card-content>
         <div class="md-actions" layout="row" layout-align="end center">
-          <md-button class="md-primary" type="submit">Submit</md-button>
-          <md-button>Cancel</md-button>
+          <md-button class="md-primary" type="submit" ng-i18next="action.submit"></md-button>
+          <md-button ng-i18next="action.cancel"></md-button>
         </div>
       </form>
     </md-card>

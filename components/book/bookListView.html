@@ -1,5 +1,5 @@
 <section class="flex-container" ng-hide="isLoading">
-  <empty-content ng-if="!books.length"  icon="{{icon || 'book'}}" text="{{emptyMsg}}"></empty-content>
+  <empty-content ng-if="isEmpty"  icon="{{icon || 'book'}}" text="{{emptyMsg}}"></empty-content>
   <md-card book-card class="flex-item" ng-if="books.length" ng-repeat="book in books" book="book"></md-card>
 </section>
 

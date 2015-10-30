@@ -1,14 +1,14 @@
 <loading-circle loading="isLoading"></loading-circle>
 <section ng-hide="isLoading || !isEmpty" class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
-  <empty-content ng-if="isEmpty" icon="search" text="No result found"></empty-content>
+  <empty-content ng-if="isEmpty" icon="search" text="{{emptyMsg}}"></empty-content>
 </section>
 
 <div ng-hide="isLoading || isEmpty">
   <!-- <span>Result : {{results.book.length}} Books, {{results.author.length}} Authors, {{results.serie.length}} Series and {{results.edition.length}} Editions</span> -->
   <span ng-show="results.book.length">
     <div class="header" layout="row" layout-align="space-between start">
-      <h2 class="title">Books</h2>
-      <md-button class="md-primary" ng-disabled="true">See all</md-button>
+      <h2 class="title" ng-i18next="book.title"></h2>
+      <md-button class="md-primary" ng-disabled="true" ng-i18next="common.more"></md-button>
     </div>
     <section class="flex-container">
       <md-card book-card class="flex-item" ng-repeat="book in results.book" book="book"></md-card>
@@ -16,8 +16,8 @@
   </span>
   <span ng-show="results.author.length">
     <div class="header" layout="row" layout-align="space-between start">
-      <h2 class="title">Authors</h2>
-      <md-button class="md-primary" ng-disabled="true">See all</md-button>
+      <h2 class="title" ng-i18next="author.title"></h2>
+      <md-button class="md-primary" ng-disabled="true" ng-i18next="common.more"></md-button>
     </div>
     <section class="flex-container" layout="row" flex layout-wrap layout-margin layout-fill layout-align="space-around center">
       <author-card ng-repeat="author in results.author" author="author"></author-card>
@@ -25,8 +25,8 @@
   </span>
   <span ng-show="results.serie.length">
     <div class="header" layout="row" layout-align="space-between start">
-      <h2 class="title">Series</h2>
-      <md-button class="md-primary" ng-disabled="true">See all</md-button>
+      <h2 class="title" ng-i18next="serie.title"></h2>
+      <md-button class="md-primary" ng-disabled="true" ng-i18next="common.more"></md-button>
     </div>
     <md-card layout-margin>
       <md-data-table-container>

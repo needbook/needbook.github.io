@@ -1,0 +1,89 @@
+{
+  "account": {
+    "title": "Mon compte",
+    "username": "Nom d'utilisateur",
+    "first-name": "Prénom",
+    "last-name": "Nom",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirm-password": "Confirmer mot de passe",
+    "delete": "Supprimer mon compte"
+  },
+  "language": {
+    "title": "Langue",
+    "french": "Français",
+    "english": "Anglais",
+    "cta": "Changer la langue"
+  },
+  "common": {
+    "community": "Communauté",
+    "management": "Gestion",
+    "and": "et",
+    "more": "plus"
+  },
+  "action": {
+    "submit": "Valider",
+    "cancel": "Annuler",
+    "add": "Ajouter",
+    "remove": "Supprimer"
+  },
+  "auth": {
+    "sign-in": "Connection",
+    "sign-up": "Inscription",
+    "sign-out": "Déconnextion"
+  },
+  "library": {
+    "title": "Ma Bibliothèque"
+  },
+  "book": {
+    "title": "Livre",
+    "details": "Détails",
+    "favorite": "Favori",
+    "pages": "Pages",
+    "editions": "Éditions",
+    "additional-information": "Information supplémentaire",
+    "add-to-library": "Ajouter à ma bibliothèque",
+    "remove-from-library": "Supprimer de ma bibliothèque",
+    "not-found": "Aucun livres trouvé",
+    "not-found-library": "Aucun livres trouvé dans ma bibliothèque",
+    "favorite-not-found": "Aucun livres favori"
+  },
+  "characters": {
+    "title": "Personnages",
+    "not-found": "Aucun personnages trouvé"
+  },
+  "places": {
+    "title": "Lieux",
+    "not-found": "Aucun lieux trouvé"
+  },
+  "author": {
+    "title": "Auteur",
+    "not-found": "Aucun auteurs trouvé",
+    "not-found-library": "Aucun auteurs trouvé dans ma bibliothèque",
+    "books-not-found": "Aucun livres trouvé"
+  },
+  "serie": {
+    "title": "Série",
+    "not-found-library": "Aucune séries trouvé dans ma bibliothèque"
+  },
+  "discover": {
+    "title": "Découvrir"
+  },
+  "feedback": {
+    "title": "Envoyer un commentaire"
+  },
+  "forum": {
+    "title": "Forum"
+  },
+  "search": {
+    "title": "Recherche",
+    "placeholder": "Recherche un livre",
+    "not-found": "Aucun résultat trouvé"
+  },
+  "settings": {
+    "title": "Paramètres"
+  },
+  "top-books": {
+    "title": "Meilleurs Livre"
+  }
+}
