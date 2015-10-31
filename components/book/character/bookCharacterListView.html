@@ -2,8 +2,8 @@
   <section class="characters-list">
     <md-list>
       <md-list-item ng-repeat="character in characters" ng-click="displayDetails(character.id)" ng-class="{'active': character.id === character_details.id}">
-        <img src="assets/img/profile.png" class="md-avatar" alt="{{character.indexedTraits().names[character.indexedTraits().names.length - 1].values.en_US.join(', ')}}"/>
-        <p>{{character.indexedTraits().names[character.indexedTraits().names.length - 1].values.en_US.join(', ')}}</p>
+        <img src="assets/img/profile.png" class="md-avatar" alt="{{character.name()}}"/>
+        <p>{{character.name()}}</p>
       </md-list-item>
       <md-list-item ng-show="characters.length == 0 && !progress">
         No characters found.
