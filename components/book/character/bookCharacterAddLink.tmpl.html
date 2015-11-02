@@ -23,11 +23,11 @@
         md-selected-item="link.to"
         md-search-text="searchChar"
         md-items="character in characterSearch(searchChar)"
-        md-item-text="character.traits.names.values.en_US.join(', ')"
+        md-item-text="character.name()"
         md-min-length="0"
         placeholder="Character relation">
         <md-item-template>
-          <span md-highlight-text="searchChar" md-highlight-flags="^i">{{character.traits.names.values.en_US.join(', ')}}</span>
+          <span md-highlight-text="searchChar" md-highlight-flags="^i">{{character.name()}}</span>
         </md-item-template>
         <md-not-found>
           No matches found.
