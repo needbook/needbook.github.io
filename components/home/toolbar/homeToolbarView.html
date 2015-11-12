@@ -1,12 +1,15 @@
-<md-toolbar class="main-nav md-whiteframe-z2" >
+<md-toolbar class="main-nav">
   <div class="md-toolbar-tools" >
     <img id="nav-logo" src="assets/img/logo@2x.png" alt="Needbook">
     <h1 class="md-headline" id="nav-logo-text">Needbook</h1>
-  </div>
-  <div class="md-toolbar-tools md-toolbar-tools-bottom" flex>
-    <md-tabs class="md-primary" md-selected="selectedIndex" flex md-stretch-tabs="always" md-border-bottom md-autoselect>
-      <md-tab label="{{'auth.sign-in' | i18next}}" ui-sref="home.login"></md-tab>
-      <md-tab label="{{'auth.sign-up' | i18next}}" ui-sref="home.sign_up"></md-tab>
-    </md-tabs>
+    <span flex></span>
+    <div class="navigation">
+      <md-button onClick="document.getElementById('about').scrollIntoView();">About</md-button>
+      <md-button ng-hide="true" onClick="document.getElementById('features').scrollIntoView();">Features</md-button>
+      <md-button onClick="document.getElementById('team').scrollIntoView();">Team</md-button>
+      <md-button onClick="document.getElementById('contact').scrollIntoView();">Contact</md-button>
+      <md-button ui-sref="home.sign_up">Sign Up</md-button>
+      <md-button ui-sref="home.login">Sign In</md-button>
+    </div>
   </div>
 </md-toolbar>

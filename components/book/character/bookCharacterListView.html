@@ -1,7 +1,7 @@
 <div class="characters-container">
   <section class="characters-list">
     <md-list>
-      <md-list-item ng-repeat="character in characters" ng-click="displayDetails(character.id)" ng-class="{'active': character.id === character_details.id}">
+      <md-list-item ng-repeat="character in characters | orderBy:orderByName" ng-click="displayDetails(character.id)" ng-class="{'active': character.id === character_details.id}">
         <img src="assets/img/profile.png" class="md-avatar" alt="{{character.name()}}"/>
         <p>{{character.name()}}</p>
       </md-list-item>
