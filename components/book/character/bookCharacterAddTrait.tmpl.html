@@ -1,6 +1,14 @@
 <md-dialog flex="60">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>Add trait</h1>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancelDialog()">
+        <ng-md-icon icon="close"></ng-md-icon>
+       </md-button>
+    </div>
+  </md-toolbar>
   <md-dialog-content class="dialog-add-event">
-    <h1>Add trait</h1>
     <md-autocomplete
       md-selected-item="trait.trait"
       md-search-text="searchText"

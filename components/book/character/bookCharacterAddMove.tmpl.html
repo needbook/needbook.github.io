@@ -1,6 +1,15 @@
 <md-dialog flex="60">
-  <md-dialog-content class="dialog-add-event">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
     <h1>Add move</h1>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancelDialog()">
+        <ng-md-icon icon="close"></ng-md-icon>
+       </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-dialog-content class="dialog-add-event">
     <div>
       <h2>From</h2>
       <md-autocomplete

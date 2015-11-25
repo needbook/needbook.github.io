@@ -1,6 +1,14 @@
 <md-dialog flex="60">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>Add action</h1>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="cancelDialog()">
+        <ng-md-icon icon="close"></ng-md-icon>
+       </md-button>
+    </div>
+  </md-toolbar>
   <md-dialog-content class="dialog-add-event">
-    <h1>Add action</h1>
     <div>
       <md-autocomplete
         md-selected-item="action.action"
@@ -48,8 +56,8 @@
       </div>
     </div>
   </md-dialog-content>
-  <md-dialog-actions>
+  <div class="md-actions">
     <md-button ng-click="cancelDialog()" class="md-warn">Cancel</md-button>
     <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
-  </md-dialog-actions>
+  </div>
 </md-dialog>
