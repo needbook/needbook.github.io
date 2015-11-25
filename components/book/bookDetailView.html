@@ -74,7 +74,9 @@
     <md-card-content>
       <md-list>
         <md-list-item ng-repeat="character in characters | orderBy:orderByName" ng-click="goToCharacter(character.id)">
-          <img src="assets/img/profile.png" class="md-avatar" alt="{{character.name()}}"/>
+          <img src="assets/img/male.svg" ng-show="character.gender() === 'male'" class="md-avatar" alt="{{character.name()}}"/>
+          <img src="assets/img/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.gender()}}"/>
+          <img src="assets/img/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.gender()}}"/>
           <p>{{character.name()}}</p>
         </md-list-item>
         <md-list-item ng-show="characters.length == 0 && !progress">
