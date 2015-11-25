@@ -1,42 +1,43 @@
 <md-dialog flex="60">
-  <md-dialog-content>
-    <h1>Add link type</h1>
+  <md-dialog-content class="dialog-add-event">
+    <h1>Add action type</h1>
     <md-input-container>
-      <input type="text" placeholder="Name" ng-model="link_type.names.en_US">
+      <input type="text" placeholder="Name" ng-model="action_type.names.en_US">
     </md-input-container>
-    <h2>Tree order</h2>
-    <md-radio-group ng-model="link_type.tree_order">
-      <md-radio-button value="indifferent" class="md-primary">Indifferent</md-radio-button>
-      <md-radio-button value="asc">Ascending</md-radio-button>
-      <md-radio-button value="desc">Descending</md-radio-button>
-    </md-radio-group>
     <h2>Sentences</h2>
-    <div layout flex>
+    <div>
+      <h4>Active</h4>
       Character
       <md-input-container>
-        <input type="text" placeholder="sentence" ng-model="link_type.sentences.en_US" />
+        <input type="text" placeholder="sentence" ng-model="action_type.sentences.en_US.active" />
+      </md-input-container>
+      Character 2.
+      <h4>Passive</h4>
+      Character 2
+      <md-input-container>
+        <input type="text" placeholder="sentence" ng-model="action_type.sentences.en_US.passive" />
       </md-input-container>
       Character.
     </div>
-    <h2>Reverse link</h2>
-    <div layout flex>
-      <md-checkbox ng-model="link_type.reverse_itself" aria-label="Itself">Itself</md-checkbox>
-    </div>
+    <h2>Causes</h2>
     <md-autocomplete
-      ng-show="!link_type.reverse_itself"
-      md-selected-item="link_type.reverse_link_type"
+      md-selected-item="action_type.causes[0]"
       md-search-text="searchText"
-      md-items="link_type in querySearch(searchText)"
-      md-item-text="link_type.names.en_US"
+      md-items="type in querySearchCause(searchText)"
+      md-item-text="type.names.en_US"
       md-min-length="0"
-      placeholder="Reverse link type name">
+      placeholder="Type name">
       <md-item-template>
-        <span md-highlight-text="searchText" md-highlight-flags="^i">{{link_type.names.en_US}}</span>
+        <span md-highlight-text="searchText" md-highlight-flags="^i">{{type.names.en_US}}</span>
       </md-item-template>
       <md-not-found>
         No matches found.
       </md-not-found>
     </md-autocomplete>
+    <md-checkbox ng-model="other">to destination character(s)</md-checkbox>
+    <md-input-container>
+      <input type="text" placeholder="Value" ng-model="value" />
+    </md-input-container>
   </md-dialog-content>
   <div class="md-actions">
     <md-button ng-click="cancelDialog()" class="md-warn">Cancel</md-button>

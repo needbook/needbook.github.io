@@ -1,26 +1,26 @@
 <md-dialog flex="60">
   <md-dialog-content class="dialog-add-event">
-    <h1>Add link</h1>
+    <h1>Add action</h1>
     <div>
       <md-autocomplete
-        md-selected-item="link.link"
+        md-selected-item="action.action"
         md-search-text="searchText"
-        md-items="link_type in querySearch(searchText)"
-        md-item-text="link_type.names.en_US"
+        md-items="action_type in querySearch(searchText)"
+        md-item-text="action_type.names.en_US"
         md-min-length="0"
         placeholder="Type name">
         <md-item-template>
-          <span md-highlight-text="searchText" md-highlight-flags="^i">{{link_type.names.en_US}}</span>
+          <span md-highlight-text="searchText" md-highlight-flags="^i">{{action_type.names.en_US}}</span>
         </md-item-template>
         <md-not-found>
           No matches found.
         </md-not-found>
       </md-autocomplete>
-      Do you want to <md-button class="md-primary" ng-click="newLinkType()">create a new one</md-button>?
+      Do you want to <md-button class="md-primary" ng-click="newActionType()">create a new one</md-button>?
     </div>
-    <div>
+    <div ng-show="action.action">
       <md-autocomplete
-        md-selected-item="link.to"
+        md-selected-item="action.to"
         md-search-text="searchChar"
         md-items="character in characterSearch(searchChar)"
         md-item-text="character.name()"
@@ -34,14 +34,7 @@
         </md-not-found>
       </md-autocomplete>
     </div>
-    <div ng-show="link.link">
-      <h2>Comment</h2>
-      <md-input-container layout flex>
-        <label>Comment</label>
-        <input type="text" ng-model="link.comments.en_US">
-      </md-input-container>
-    </div>
-    <div ng-show="link.link">
+    <div ng-show="action.action">
       <h2>Locations</h2>
       <div layout flex>
         <md-input-container layout flex>
@@ -55,8 +48,8 @@
       </div>
     </div>
   </md-dialog-content>
-  <div class="md-actions">
+  <md-dialog-actions>
     <md-button ng-click="cancelDialog()" class="md-warn">Cancel</md-button>
     <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
-  </div>
+  </md-dialog-actions>
 </md-dialog>

@@ -1,9 +1,10 @@
 <div ng-controller="BookCharacterDetailCtrl">
-  <md-button ng-click="addTraitDialog();">Add trait</md-button>
-  <md-button ng-click="addLinkDialog();">Add link</md-button>
-  <md-button ng-click="addMoveDialog();">Add move</md-button>
-  <md-button ng-click="addActionDialog();">Add action</md-button>
-
+  <div style="text-align:right;">
+    <md-button ng-click="addTraitDialog();">Add trait</md-button>
+    <md-button ng-click="addLinkDialog();">Add link</md-button>
+    <md-button ng-click="addMoveDialog();">Add move</md-button>
+    <md-button ng-click="addActionDialog();">Add action</md-button>
+  </div>
   <timeline>
     <timeline-event ng-repeat="(location, events) in events | groupBy: 'calculated_begin_location'">
 
