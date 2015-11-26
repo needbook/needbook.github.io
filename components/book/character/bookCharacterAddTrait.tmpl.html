@@ -23,7 +23,7 @@
         No matches found.
       </md-not-found>
     </md-autocomplete>
-    Do you want to <md-button class="md-raised md-primary" ng-click="newTraitType()">create a new one</md-button>?
+    Do you want to <md-button class="md-primary" ng-click="newTraitType()">create a new one</md-button>?
     <div ng-show="trait.trait && trait.trait.possible_values.length == 0">
       <h2>Values</h2>
       <md-list>
@@ -46,11 +46,11 @@
       <div layout flex>
         <md-input-container layout flex>
           <label>Begin location</label>
-          <input type="number" ng-model="trait.begin_locations[0].location">
+          <input type="number" ng-model="begin_locations[edition.id].location">
         </md-input-container>
         <md-input-container layout flex>
           <label>End location</label>
-          <input type="number" ng-model="trait.end_locations[0].location">
+          <input type="number" ng-model="end_locations[edition.id].location">
         </md-input-container>
       </div>
     </div>

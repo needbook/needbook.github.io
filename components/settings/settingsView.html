@@ -9,13 +9,15 @@
           <span class="md-body-2">{{'account.email' | i18next }}:</span> {{currentUser.email}} <span class="md-caption">({{currentUser.state}})</span><br>
         </p>
         <md-input-container>
-          <label ng-i18next="language.title"></label>
+          <label ng-i18next="language.title">
+            {{'language.french' | i18next}}
+          </label>
           <md-select ng-model="lng">
             <md-option value="fr">
-              {{'language.french' | i18next}}
+              <span class="flag-icon flag-icon-fr"></span> {{'language.french' | i18next}}
             </md-option>
             <md-option value="en">
-              {{'language.english' | i18next}}
+              <span class="flag-icon flag-icon-us"></span> {{'language.english' | i18next}}
             </md-option>
           </md-select>
         </md-input-container>

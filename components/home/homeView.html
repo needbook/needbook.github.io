@@ -3,8 +3,9 @@
   <section class="headline">
     <div class="container">
       <div class="description">
-        <h2 class="md-display-2">Best landing page for modern app!</h2>
-        <h6 class="md-subhead">A supporting statement of your value proposition. Entive your visitor to keep reading the heigh level details of your offering.</h6>
+        <h2 class="md-display-2">Discover a new ways of reading</h2>
+        <h6 class="md-subhead">Have access to detailed information about your favourite books.</br>
+          Characters, Places & Events description. Much more are categories coming soon</h6>
         <div class="cta-container">
           <md-button class="md-raised md-accent md-hue-2 btn-cta" ui-sref="home.sign_up">Sign Up</md-button>
         </div>
@@ -18,73 +19,60 @@
     <div class="container">
       <div class="content-header">
         <h3 class="md-display-1">About</h3>
-        <p class="md-body-1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p class="md-body-1">
+          Needbook is an application designed for mobile-devices readers. It will be available on iOS & Android while also having a Web Application.
+        </p>
       </div>
       <div class="content">
         <div class="icon-item">
           <ng-md-icon icon="my_library_books" size="48"></ng-md-icon>
           <h5 class="md-title">Library</h5>
-          <p class="description">Sed ut perspiciatis unde omnis iste natus error sit.</p>
+          <p class="description">Keep track of the books you are reading and those you have already read.</p>
         </div>
         <div class="icon-item">
           <ng-md-icon icon="info_outline" size="48"></ng-md-icon>
           <h5 class="md-title">Information</h5>
-          <p class="description">At vero eos et accusamus et iusto odio dignissimos.</p>
+          <p class="description">Access detailed informations about characters, places & events that happend in the book.</p>
         </div>
         <div class="icon-item">
           <ng-md-icon icon="book" size="48"></ng-md-icon>
           <h5 class="md-title">Reader</h5>
-          <p class="description">Nam libero tempore, cum soluta nobis est.</p>
+          <p class="description">Access additional informations of the book while reading with a simple click.</p>
         </div>
         <div class="icon-item">
           <ng-md-icon icon="comment" size="48"></ng-md-icon>
           <h5 class="md-title">Community</h5>
-          <p class="description">Temporibus autem quibusdam et aut officiis debitis aut rerum.</p>
+          <p class="description">Share your reading experience with our community.</p>
         </div>
       </div>
     </div>
   </section>
 
 
-  <section id="features" class="features" ng-hide="true">
+  <section id="features" class="features">
     <div class="container">
       <div class="content-header">
         <h3 class="md-display-1">Features</h3>
-        <p class="md-body-1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p class="md-body-1">
+          Lately we have been working on a first draft of our iOS Application.<br>
+           Be one of the first to try it out. To do so apply to our Beta and we will send you an invite to download the app very soon.
+        </p>
       </div>
       <div class="content">
-        <md-tabs md-dynamic-height md-center-tabs md-border-bottom>
-          <md-tab>
-            <md-tab-label>
-              <ng-md-icon icon="phone_iphone" size="19"></ng-md-icon>
-              Phone
-            </md-tab-label>
-            <md-content class="md-padding">
-              <h4 class="md-headline">Smartphone Version</h4>
-              <p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
-            </md-content>
-          </md-tab>
-          <md-tab>
-            <md-tab-label>
-              <ng-md-icon icon="tablet_mac" size="19"></ng-md-icon>
-              Tablet
-            </md-tab-label>
-            <md-content class="md-padding">
-              <h4 class="md-headline">Tablet Version</h4>
-              <p class="description">Nemo enim ipsam voluptatem qu eum iure reprehenderit qui in ea voluptate velit. Sed ut perspiciatis unde. Nam libero tempore, cum soluta nobis est eligendi omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo.</p>
-            </md-content>
-          </md-tab>
-          <md-tab>
-            <md-tab-label>
-              <ng-md-icon icon="desktop_windows" size="19"></ng-md-icon>
-              Desktop
-            </md-tab-label>
-            <md-content class="md-padding">
-              <h4 class="md-headline">Desktop Version</h4>
-              <p class="description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-            </md-content>
-          </md-tab>
-        </md-tabs>
+        <div class="icon-item">
+          <img src="assets/img/logo@2x.png" alt="Needbook">
+          <h5 class="md-title">iOS Application</h5>
+          <p class="description">Become a beta tester of our iOS Application .</p>
+          <form>
+            <md-input-container>
+              <label>Email</label>
+              <input ng-model="user.email" type="email">
+            </md-input-container>
+            <md-button class="md-accent md-raised">
+              Apply to Beta
+            </md-button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
@@ -93,7 +81,7 @@
     <div class="container">
       <div class="content-header">
         <h3 class="md-display-1">Team</h3>
-        <p class="md-body-1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p class="md-body-1">We are a group of 6 Epitech students trying to make a difference in the life of digital readers.</p>
       </div>
       <div class="content">
         <div class="team-members">
@@ -146,7 +134,11 @@
     <div class="container">
       <div class="content-header">
         <h3 class="md-display-1">Contact Us</h3>
-        <p class="md-body-1">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+        <p class="md-body-1">
+          Have any questions or suggestion ?<br>
+          Whould you like to participate to our beta ? <br>
+          Don't esitate to contact us at:
+        </p>
         <a href="mailto:contact@needbook.io" class="md-subhead md-body-2">contact@needbook.io</a>
       </div>
     </div>
