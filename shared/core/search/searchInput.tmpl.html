@@ -1,4 +1,5 @@
-<form ng-submit="search(query)">
-  <ng-md-icon class="search-icon" icon="search" label="{{'search.title' | i18next}}"></ng-md-icon>
-  <input class="search-input" ng-model="query" role="search" placeholder="{{'search.placeholder' | i18next}}" aria-label="{{'search.title' | i18next}}" ng-focus="true" >
+<form class="search-input-form" ng-submit="search(query)">
+  <md-input-container class="search-input-container" md-no-float class="md-block">
+    <input class="search-input" ng-model="query" type="text" role="search" placeholder="{{'search.placeholder' | i18next}}" ng-focus="true" aria-label="{{'search.title' | i18next}}">
+  </md-input-container>
 </form>

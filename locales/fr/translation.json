@@ -50,6 +50,8 @@
   },
   "characters": {
     "title": "Personnages",
+    "new": "Nouveau personnage",
+    "edit": "Edition de personnage",
     "not-found": "Aucun personnages trouvé"
   },
   "places": {

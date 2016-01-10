@@ -1,38 +1,21 @@
-<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 core-sidenav" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+<md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2 core-sidenav" md-component-id="left">
   <md-toolbar class="profile-menu md-tall" layout="column" layout-padding>
     <div class="profile-picture" layout-padding>
-      <img src="/assets/img/profile.svg">
+      <img src="/assets/img/avatars/user/profile.svg">
     </div>
     <div class="profile-info">
       <div>
         <span class="md-body-2">{{currentUser.firstName}} {{currentUser.lastName}}</span><br>
         <span class="md-body-1">{{currentUser.email}}</span>
       </div>
-      <md-menu md-position-mode="target-right target" layout-align="end end">
-        <md-button aria-label="Open user interactions menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-          <ng-md-icon md-menu-origin icon="arrow_drop_down" label="menu"></ng-md-icon>
-        </md-button>
-        <md-menu-content width="3">
-          <md-menu-item>
-            <md-button ng-click="logout()">
-              <ng-md-icon icon="logout" style="fill: #616161;"label="logout"></ng-md-icon>
-              {{'auth.sign-out' | i18next}}
-            </md-button>
-          </md-menu-item>
-        </md-menu-content>
-      </md-menu>
     </div>
   </md-toolbar>
     <md-list id="nav-collections" class="nav-section">
-      <span ng-repeat="category in menu">
-        <md-divider ng-if="$index"></md-divider>
-        <md-subheader class="md-no-sticky" ng-if="category.subheader">{{category.subheader | i18next}}</md-subheader>
-        <md-list-item ng-repeat="item in category.links">
-          <a ui-sref="{{item.state}}" ui-sref-active="active" layout="row" layout-align="start center">
-            <ng-md-icon icon="{{item.icon}}" style="fill: #616161" label="{{item.title}}"></ng-md-icon>
-            <p class="md-body-2">{{item.title | i18next}}</p>
-          </a>
-        </md-list-item>
-      </span>
+      <md-list-item ng-repeat="item in menu">
+        <a ng-click="close()" ui-sref="{{item.state}}" ui-sref-active="active" layout="row" layout-align="start center">
+          <ng-md-icon class="no-margin" icon="{{item.icon}}" style="fill: #616161" label="{{item.title}}"></ng-md-icon>
+          <p class="md-body-2">{{item.title | i18next}}</p>
+        </a>
+      </md-list-item>
     </md-list>
 </md-sidenav>

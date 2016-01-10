@@ -50,6 +50,8 @@
   },
   "characters": {
     "title": "Characters",
+    "new": "New character",
+    "edit": "Edit character",
     "not-found": "No characters found"
   },
   "places": {

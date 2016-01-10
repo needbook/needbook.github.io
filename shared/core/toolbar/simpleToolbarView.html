@@ -1,16 +1,53 @@
+<md-toolbar id="search-toolbar" class="search-toolbar" ng-show="isSearchVisible">
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" ng-click="toogleSearch();$event.stopPropagation();" aria-label="Back">
+      <ng-md-icon icon="arrow_back"></ng-md-icon>
+    </md-button>
+    <search-input></search-input>
+    <md-button class="md-icon-button" ng-click="clearSearch();$event.stopPropagation();" aria-label="Clear">
+      <ng-md-icon icon="close"></ng-md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
 <md-toolbar class="md-whiteframe-z2" ng-class="{'md-tall': tabs.length > 0}">
   <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" ng-click="toggleLeft()" aria-label="Settings" hide-gt-md>
+    <md-button class="md-icon-button" ng-click="toggleLeft();" aria-label="Settings">
       <ng-md-icon icon="menu"></ng-md-icon>
     </md-button>
     <div class="toolbar-container">
-      <h2 class="title"><span>{{pageTitle || '' | i18next}}</span></h2>
-      <search-input hide-sm></search-input>
-      <span hide-sm></span>
+      <h2 class="title">
+        <span>{{pageTitle || '' | i18next}}</span></h2>
     </div>
-    <md-button  class="md-icon-button" aria-label="Search" hide-gt-sm>
+    <md-button  class="md-icon-button" ng-click="toogleSearch();$event.stopPropagation();" aria-label="{{'search.title' | i18next}}">
       <ng-md-icon icon="search"></ng-md-icon>
     </md-button>
+
+    <md-menu md-position-mode="target-right target">
+      <md-button style="display:flex; min-width: 36px" ng-click="$mdOpenMenu($event)">
+        <span style="margin-right: 8px;" hide-xs>{{currentUser.firstName}} {{currentUser.lastName}}</span>
+        <img md-menu-origin src="/assets/img/avatars/user/profile.svg" height="32px" width="32px">
+      </md-button>
+      <md-menu-content width="3">
+        <md-menu-item>
+          <md-button ui-sref="app.settings" ui-sref-active="active" aria-label="{{'settings.title' | i18next}}">
+            <div flex layout="row">
+              <p flex ng-i18next="settings.title"></p>
+              <ng-md-icon md-menu-align-target icon="settings"></ng-md-icon>
+            </div>
+          </md-button>
+        </md-menu-item>
+        <md-divider>
+        <md-menu-item>
+          <md-button ng-click="logout()"  aria-label="{{'auth.sign-out' | i18next}}">
+            <div layout="row">
+              <p flex ng-i18next="auth.sign-out"></p>
+              <ng-md-icon md-menu-align-target icon="logout" ></ng-md-icon>
+            </div>
+          </md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
   </div>
   <div class="md-toolbar-tools md-toolbar-tools-bottom toolbar-container" ng-if="tabs.length > 0">
     <md-tabs class="md-primary" md-selected="selectedIndex" md-stretch-tabs md-autoselect>

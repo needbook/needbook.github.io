@@ -1,0 +1,33 @@
+<md-card>
+  <md-toolbar class="md-pimary">
+    <div class="md-toolbar-tools">
+      <h3 ng-show="isLoading">Loading...</h3>
+      <h3 ng-hide="isLoading">{{characters.length}} Characters</h3>
+      <span flex></span>
+      <md-button class="md-icon-button" ui-sref="app.book.characters.new({bookID: bookId})">
+        <ng-md-icon icon="add"></ng-md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-card-content class="loading" ng-show="isLoading">
+    <md-progress-circular class="md-accent" md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+  </md-card-content>
+
+  <md-card-content class="empty" ng-show="!isLoading && isEmpty">
+    <empty-content icon="perm_identity" text="{{emptyMsg}}"></empty-content>
+    <md-button class="md-primary" ui-sref="app.book.characters.new({bookID: bookId})">Add Character</md-button>
+  </md-card-content>
+
+  <md-card-content ng-hide="isLoading || isEmpty">
+    <md-list class="no-padding">
+      <!-- <md-list-item ng-repeat="character in characters | orderBy:orderByName" ui-sref="app.book.character({bookID: bookId, charID: character.id})"> -->
+      <md-list-item ng-repeat="character in characters | orderBy:orderByName" ng-click="goToCharacter(character.id)">
+        <img src="assets/img/avatars/character/male.svg" ng-show="character.gender() === 'male'" class="md-avatar" alt="{{character.name()}}"/>
+        <img src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.gender()}}"/>
+        <img src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.gender()}}"/>
+        <p>{{character.name()}}</p>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

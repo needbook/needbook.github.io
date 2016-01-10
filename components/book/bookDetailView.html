@@ -1,9 +1,9 @@
-<div class="book-details-container" layout-margin layout-padding>
+<div class="book-details-container" >
   <md-card class="book-details">
     <section class="info-container">
       <div class="cover">
         <img class="image" ng-if="edition.default_image" ng-src="{{edition.default_image}}" alt="{{book.title}}">
-        <img class="image" ng-if="!edition.default_image" src="assets/img/no_book_cover.jpg" alt="{{book.title}}">
+        <img class="image" ng-if="!edition.default_image" src="assets/img/book/no_cover.jpg" alt="{{book.title}}">
       </div>
       <div class="info">
         <h2 class="title md-headline">{{book.title}}</h2>
@@ -61,47 +61,27 @@
     </md-card-content>
   </md-card>
 
-  <md-card class="characters-list">
-    <md-toolbar class="md-pimary">
-      <div class="md-toolbar-tools">
-        <h3>Characters</h3>
-        <span flex></span>
-        <md-button ui-sref="app.book.characters.new()">
-          Add
-        </md-button>
-      </div>
-    </md-toolbar>
-    <md-card-content>
-      <md-list>
-        <md-list-item ng-repeat="character in characters | orderBy:orderByName" ng-click="goToCharacter(character.id)">
-          <img src="assets/img/male.svg" ng-show="character.gender() === 'male'" class="md-avatar" alt="{{character.name()}}"/>
-          <img src="assets/img/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.gender()}}"/>
-          <img src="assets/img/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.gender()}}"/>
-          <p>{{character.name()}}</p>
-        </md-list-item>
-        <md-list-item ng-show="characters.length == 0 && !progress">
-          No characters found.
-        </md-list-item>
-      </md-list>
-    </md-card-content>
-  </md-card>
+  <character-list-card book-id="bookId"></character-list-card>
+
   <md-card class="places-list">
     <md-toolbar class="md-pimary">
       <div class="md-toolbar-tools">
-        <h3>Places</h3>
+        <h3>{{places.length}} Places</h3>
         <span flex></span>
-        <md-button ui-sref="app.book.places.new()">
-          Add
+        <md-button class="md-icon-button" ui-sref="app.book.places.new({bookID: bookId})">
+          <ng-md-icon icon="add"></ng-md-icon>
         </md-button>
       </div>
     </md-toolbar>
-    <md-card-content>
+    <md-card-content class="no-padding empty" ng-hide="places.length">
+      <empty-content icon="map" text="No places found"></empty-content>
+      <md-button class="md-primary" ui-sref="app.book.places.new()">Add Places</md-button>
+    </md-card-content>
+
+    <md-card-content class="no-padding" ng-show="places.length">
       <md-list>
         <md-list-item ng-repeat="place in places">
           <p>{{place.name()}}</p>
-        </md-list-item>
-        <md-list-item ng-show="places.length == 0 && !progress">
-          No places found.
         </md-list-item>
       </md-list>
     </md-card-content>
@@ -109,7 +89,7 @@
 </div>
 
 <!-- <div class="lock-size md-fab-bottom-right" > -->
-  <md-fab-speed-dial  ng-hide="true" id="my-speed-dial" md-open="demo.isOpen" md-direction="up" ng-class="demo.selectedMode">
+  <md-fab-speed-dial id="my-speed-dial" md-open="demo.isOpen" md-direction="up" ng-class="demo.selectedMode">
     <md-fab-trigger>
       <md-button ng-hide="added" aria-label="menu" class="md-fab md-accent" ng-click="addToLibrary(edition.id)">
         <md-tooltip md-direction="left">{{'book.add-to-library' | i18next}}</md-tooltip>

@@ -1,9 +1,9 @@
-<md-dialog flex="60">
+<md-dialog flex="60" ng-controller="AddLinkTypeCtrl">
   <md-toolbar>
     <div class="md-toolbar-tools">
     <h1>Add link type</h1>
       <span flex></span>
-      <md-button class="md-icon-button" ng-click="cancelDialog()">
+      <md-button class="md-icon-button" ng-click="close()">
         <ng-md-icon icon="close"></ng-md-icon>
        </md-button>
     </div>
@@ -48,7 +48,7 @@
     </md-autocomplete>
   </md-dialog-content>
   <div class="md-actions">
-    <md-button ng-click="cancelDialog()" class="md-warn">Cancel</md-button>
-    <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
+    <md-button ng-click="close()">Cancel</md-button>
+    <md-button ng-click="save()" class="md-primary">Save</md-button>
   </div>
 </md-dialog>

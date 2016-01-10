@@ -1,84 +1,275 @@
-<md-card class="md-whiteframe-z1">
-  <section>
-    <md-toolbar class="md-theme-light" layout="column">
-      <h2 class="md-toolbar-tools">
-        <span>Traits</span>
-        <span flex></span>
-        <md-button ng-click="addTraitDialog();">Add</md-button>
-      </h2>
-    </md-toolbar>
-    <md-content>
-      <md-list>
-        <md-list-item class="md-2-line" ng-repeat="trait in character.traits">
-          <div class="md-list-item-text">
-            <h3>{{trait.trait.names.en_US}} <md-icon ng-if="trait.trait.primary">star_rate</md-icon></h3>
-            <p>{{trait.values.en_US.join(', ')}}</p>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
+<div class="character-edition-page md-margin" layout="row" layout-aligne="start space-between" layout-wrap>
+  <section class="left-side" flex-gt-xs="35" flex-gt-sm="30">
+    <md-card class="character-card with-image-content">
+      <img class="md-card-image" src="assets/img/material-design-wallpaper.png" alt="image caption">
+      <section class="md-card-image-content" layout="row" layout-wrap layout-align="start space-between">
+        <div class="md-padding" flex="100">
+          <img class="md-avatar" src="assets/img/avatars/character/male.svg" ng-show="character.gender() === 'male'"/>
+          <img class="md-avatar" src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'"/>
+          <img class="md-avatar" src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'"/>
+        </div>
+        <div class="md-padding" layout="row" layout-align="start center">
+          <ng-md-icon style="margin-right: 8px;" ng-show="character.gender() && character.gender() != 'unknown'" ng-class="character.gender()"  icon="{{'gender_' + (character.gender())}}"></ng-md-icon>
+          <ng-md-icon style="margin-right: 8px;" ng-hide="character.gender() && character.gender() != 'unknown'" icon="gender"></ng-md-icon>
+          <h3 class="md-title no-margin">{{character.name() || 'Character name'}}</h3>
+        </div>
+      </section>
+      <md-card-content ng-hide="charId">
+        <i class="md-body-1">Please note that the traits <span class="warn-color" style="font-style: normal;">Name*</span> and <span class="warn-color" style="font-style: normal;">Gender*</span> are required before saving your character.</i>
+      </md-card-content>
+      <md-divider></md-divider>
+      <md-card-actions layout="row" layout-align="end center">
+        <md-button class="md-accent" ng-click="save()" ng-disabled="!indexedCharacterTraits.names[0].values.en_US[0].length || !indexedCharacterTraits.gender[0].values.en_US[0].length">
+          {{charId ? 'Update' : 'Create'}}
+        </md-button>
+      </md-card-actions>
+    </md-card>
+
+    <md-card class="character-about-card">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">Apparition </span>
+          <span class="md-subhead">Used not to spoil other users</span>
+        </md-card-title-text>
+      </md-card-title>
+      <md-card-content>
+        <md-input-container class="md-block">
+          <label>Apear at page:</label>
+          <input type="number" ng-disabled="character.id" ng-model="character.locations[0].location">
+        </md-input-container>
+      </md-card-content>
+    </md-card>
+
+    <md-card>
+      <md-list class="no-padding">
+        <md-list-item>
+          <p class="secondary-color-on-light">
+            <ng-md-icon icon="info"></ng-md-icon>
+            Traits
+          </p>
+          <div class="md-secondary" ng-bind="character.traits.length"></div>
         </md-list-item>
-        <md-list-item ng-if="!hasKeys(character.traits)">
-          <div class="md-list-item-text" layout-fill>
-            <span ng-hide="progress">No traits available.</span>
-            <md-progress-linear md-mode="indeterminate" ng-show="progress"></md-progress-linear>
-          </div>
+        <md-list-item>
+          <p class="secondary-color-on-light">
+            <ng-md-icon icon="link"></ng-md-icon>
+            Relationships
+          </p>
+          <div class="md-secondary" ng-bind="character.links.length"></div>
         </md-list-item>
       </md-list>
-    </md-content>
+    </md-card>
   </section>
 
-  <section>
-    <md-toolbar layout="column">
-      <h2 class="md-toolbar-tools">
-        <span>Links</span>
-        <span flex></span>
-        <md-button ng-click="addLinkDialog();">Add</md-button>
-      </h2>
-    </md-toolbar>
-    <md-list>
-      <md-list-item class="md-2-line" ng-repeat="link in character.links">
-        <div class="md-list-item-text">
-          <h3>{{link.link.names.en_US}}</h3>
-          <p>{{link.to.traits.names.values.en_US[0]}}</p>
-        </div>
-        <md-divider ng-if="!$last"></md-divider>
-      </md-list-item>
-      <md-list-item ng-if="!hasKeys(character.links)">
-        <div class="md-list-item-text" layout-fill>
-          <span ng-hide="progress">No links available.</span>
-          <md-progress-linear md-mode="indeterminate" ng-show="progress"></md-progress-linear>
-        </div>
-      </md-list-item>
-    </md-list>
-  </section>
+  <section class="right-side" flex>
+    <md-card class="character-edit-card">
+      <md-card-content class="no-padding">
+        <md-tabs class="md-primary" flex md-dynamic-height md-center-tabs md-swipe-content>
+          <md-tab label="Traits">
+            <md-content class="no-padding traits-form">
+              <md-list class="traits-list">
+                <md-list-item class="md-2-line secondary-button-padding" ng-repeat="characterTrait in character.traits">
+                  <div class="md-list-item-text" layout="column" ng-hide="characterTrait._edit">
+                    <h3 ng-show="characterTrait.values['en_US'].length">{{ characterTrait.values['en_US'].join(',') }}</h3>
+                    <h3 ng-hide="characterTrait.values['en_US'].length"><i>Click on the edit button to update this trait</i></h3>
+                    <p>{{ characterTrait.trait.names['en_US'] }}</p>
+                    <span class="md-caption secondary-color-on-light">
+                      <span ng-show="characterTrait.begin_location">Begin at: {{ characterTrait.begin_location }}</span>
+                      <span ng-show="characterTrait.begin_location && characterTrait.end_location">|</span>
+                      <span ng-show="characterTrait.end_location">End at: {{ characterTrait.end_location }}</span>
+                    </span>
+                    <div class="md-secondary-buttons">
+                      <md-button class="md-icon-button icon-color-on-light md-secondary" ng-hide="characterTrait._edit" ng-click="removeCharacterTrait(characterTrait)">
+                        <ng-md-icon icon="delete"></ng-md-icon>
+                      </md-button>
+                      <md-button class="md-icon-button icon-color-on-light md-secondary" ng-hide="characterTrait._edit || characterTrait.id" ng-click="characterTrait._edit = true;">
+                        <ng-md-icon icon="edit"></ng-md-icon>
+                      </md-button>
+                    </div>
+                  </div>
 
-  <section>
-    <md-toolbar class="md-theme-light" layout="colum">
-      <h2 class="md-toolbar-tools">
-        <span>Moves</span>
-        <span flex></span>
-        <md-button ng-click="addMoveDialog();">Add</md-button>
-      </h2>
-    </md-toolbar>
-    <md-content>
-      <md-list>
-        <md-list-item class="md-2-line" ng-repeat="move in character.moves">
-          <div class="md-list-item-text">
-            <h3>From {{move.from.traits.names.values.en_US.join(', ')}}</h3>
-            <p>To {{move.to.traits.names.values.en_US.join(', ')}}</p>
-          </div>
-          <md-divider ng-if="!$last"></md-divider>
-        </md-list-item>
-        <md-list-item ng-if="!hasKeys(character.moves)">
-          <div class="md-list-item-text" layout-fill>
-            <span ng-hide="progress">No moves available.</span>
-            <md-progress-linear md-mode="indeterminate" ng-show="progress"></md-progress-linear>
-          </div>
-        </md-list-item>
-      </md-list>
-    </md-content>
-  </section>
+                  <div class="traits-list-item" layout="row" layout-wrap ng-show="characterTrait._edit">
+                    <md-input-container flex>
+                      <label>Trait</label>
+                      <md-select ng-model="characterTrait.trait" ng-disabled="true" ng-model-options="{trackBy: '$value.names.en_US'}">
+                        <md-option ng-repeat="traitType in traitTypes" ng-value="{{traitType}}">
+                          {{traitType.names['en_US']}}
+                        </md-option>
+                      </md-select>
+                    </md-input-container>
+                    <div ng-show="characterTrait.trait" flex>
+                      <md-input-container ng-show="characterTrait.trait.possible_values.length && characterTrait.trait.multiple">
+                        <label>Value</label>
+                        <md-select class="trait-value" multiple ng-model="characterTrait.values['en_US']">
+                          <md-option ng-if="characterTrait.trait" ng-repeat="value in characterTrait.trait.possible_values" value="{{value}}">
+                            {{value}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
+                      <md-input-container class="trait-value" ng-show="characterTrait.trait.possible_values.length && !characterTrait.trait.multiple">
+                        <label>Value</label>
+                        <md-select flex ng-model="characterTrait.values['en_US'][0]">
+                          <md-option ng-if="characterTrait.trait" ng-repeat="value in characterTrait.trait.possible_values" value="{{value}}">
+                            {{value}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
+                      <md-input-container class="trait-value" ng-show="!characterTrait.trait.possible_values.length">
+                        <label>Value</label>
+                        <input ng-model="characterTrait.values['en_US'][0]">
+                      </md-input-container>
+                    </div>
+                    <div flex layout="row" ng-show="characterTrait.values['en_US'][0]">
+                      <md-input-container class="trait-location">
+                        <label>Begin Location</label>
+                        <input type="number" ng-model="characterTrait.begin_locations[0].location">
+                      </md-input-container>
+                      <md-input-container class="trait-location">
+                        <label>End Location</label>
+                        <input type="number" ng-model="characterTrait.end_locations[0].location">
+                      </md-input-container>
+                    </div>
+                    <md-button class="md-accent md-secondary" ng-show="characterTrait.trait.names['en_US'] && characterTrait.values['en_US'][0]" ng-click="characterTrait._edit = false">Update</md-button>
+                  </div>
+                </md-list-item>
+                <md-list-item class="secondary-button-padding" ng-repeat="newCharacterTrait in newCharacterTraits">
+                  <div class="traits-list-item" layout="row" layout-wrap>
+                    <!-- <md-input-container flex> -->
+                      <md-autocomplete class="md-margin" flex
+                        md-selected-item="newCharacterTrait.trait"
+                        md-search-text="searchTrait"
+                        md-items="traitType in queryTraitSearch(searchTrait)"
+                        md-item-text="traitType.names.en_US"
+                        md-selected-item-change="clearNewCharacterTraitValue(newCharacterTrait)"
+                        md-min-length="0"
+                        placeholder="Search Trait">
+                        <md-item-template>
+                          <span md-highlight-text="searchTrait" md-highlight-flags="^i">
+                            {{traitType.names['en_US']}}
+                          </span>
+                        </md-item-template>
+                        <md-not-found >
+                          No trait matching "{{searchTrait}}" were found.
+                        </md-not-found>
+                      </md-autocomplete>
+                    <div ng-show="newCharacterTrait.trait" flex>
+                      <md-input-container ng-show="newCharacterTrait.trait.possible_values.length && newCharacterTrait.trait.multiple">
+                        <label>Value</label>
+                        <md-select class="trait-value" multiple ng-model="newCharacterTrait.values['en_US']">
+                          <md-option ng-if="newCharacterTrait.trait" ng-repeat="value in newCharacterTrait.trait.possible_values" value="{{value}}">
+                            {{value}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
+                      <md-input-container class="trait-value" ng-show="newCharacterTrait.trait.possible_values.length && !newCharacterTrait.trait.multiple">
+                        <label>Value</label>
+                        <md-select flex ng-model="newCharacterTrait.values['en_US'][0]">
+                          <md-option ng-if="newCharacterTrait.trait" ng-repeat="value in newCharacterTrait.trait.possible_values" value="{{value}}">
+                            {{value}}
+                          </md-option>
+                        </md-select>
+                      </md-input-container>
+                      <md-input-container class="trait-value" ng-show="!newCharacterTrait.trait.possible_values.length">
+                        <label>Value</label>
+                        <input ng-model="newCharacterTrait.values['en_US'][0]">
+                      </md-input-container>
+                    </div>
+                    <div flex layout="row" ng-show="newCharacterTrait.values['en_US'][0]">
+                      <md-input-container class="trait-location">
+                        <label>Begin Location</label>
+                        <input type="number" ng-model="newCharacterTrait.begin_locations[0].location">
+                      </md-input-container>
+                      <md-input-container class="trait-location">
+                        <label>End Location</label>
+                        <input type="number" ng-model="newCharacterTrait.end_locations[0].location">
+                      </md-input-container>
+                    </div>
+                    <md-button class="md-accent md-secondary" ng-show="newCharacterTrait.trait.names['en_US'] && newCharacterTrait.values['en_US'][0]" ng-click="addCharacterTrait(newCharacterTrait)">Add</md-button>
+                    <md-button class="md-secondary" ng-hide="newCharacterTrait.trait.names['en_US'] && newCharacterTrait.values['en_US'][0]" ng-click="removeNewTrait(newCharacterTrait)">Cancel</md-button>
+                  </div>
+                </md-list-item>
+                <md-list-item layout-align="center center" >
+                  <md-button class="md-primary" ng-click="newCharacterTrait()">New trait</md-button>
+                  <md-button class="md-primary" ng-click="newTraitType($event)">New trait type</md-button>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab>
 
-  <section>
-    <md-button class="md-primary" ng-click="save();">Save</md-button>
+          <md-tab md-active="false" label="Relationships">
+            <md-content class="no-padding links-form">
+              <md-list class="links-list bordered">
+                <md-list-item md-no-ink class="link-type" ng-repeat="(linkTypeName, characterLinks) in indexedCharacterLinks" ng-class="{active: selectedLinkType.id === characterLinks[0].link.id}">
+                  <p class="link-type-name" ng-click="selectLinkType(characterLinks)">
+                    {{linkTypeName}}
+                    <span class="md-primary">({{characterLinks.length}})</span>
+                  </p>
+                  <ng-md-icon class="md-secondary" ng-show="selectedLinkType.id === characterLinks[0].link.id" ng-click="selectLink(linkType)" icon="chevron_right"></ng-md-icon>
+                  <div class="link-type-details bordered" ng-show="selectedLinkType.id === characterLinks[0].link.id">
+                    <div flex class="informations">
+                      <h3 class="no-margin md-title">Link Type</h3><br>
+                      <label class="md-body-2">Name:</label> {{selectedLinkType.names.en_US}}<br><br>
+                      <label class="md-body-2">Tree order:</label>
+                      <md-radio-group layout="row" layout-wrap ng-model="selectedLinkType.tree_order">
+                        <md-radio-button ng-value="asc" aria-label="asc" aria-checked="false" ng-class="{'md-checked': selectedLinkType.tree_order === 'asc'}" ng-disabled="true">
+                          Asc
+                        </md-radio-button>
+                        <md-radio-button ng-value="desc" aria-label="desc" ng-class="{'md-checked': selectedLinkType.tree_order === 'desc'}" ng-disabled="true">
+                          Desc
+                        </md-radio-button>
+                        <md-radio-button ng-value="indifferent" aria-label="indifferent" ng-class="{'md-checked': selectedLinkType.tree_order === 'indifferent'}" ng-disabled="true">
+                          Indifferent
+                        </md-radio-button>
+                      </md-radio-group><br>
+                      <label class="md-body-2">Reversed ?</label>
+                      <md-switch class="no-margin" ng-disabled="true" aria-label="Reversed?" ng-class="{'md-checked': selectedLinkType.reverse_link_type}">
+                        {{selectedLinkType.reverse_link_type ? 'True' : 'False'}}
+                      </md-switch>
+                    </div>
+                    <div flex class="characters">
+                      <md-list>
+                        <md-list-item ng-repeat="characterLink in characterLinks">
+                          <img src="assets/img/avatars/character/male.svg" ng-show="characterLink.to.gender() === 'male'" class="md-avatar" alt="{{characterLink.to.name()}}"/>
+                          <img src="assets/img/avatars/character/female.svg" ng-show="characterLink.to.gender() === 'female'" class="md-avatar" alt="{{characterLink.to.gender()}}"/>
+                          <img src="assets/img/avatars/character/unknown.svg" ng-show="characterLink.to.gender() != 'female' && characterLink.to.gender() != 'male'" class="md-avatar" alt="{{characterLink.to.gender()}}"/>
+                          <p>{{characterLink.to.name()}}</p>
+                        </md-list-item>
+                      </md-list>
+                    </div>
+                  </div>
+                </md-list-item>
+                <md-list-item ng-repeat="newCharacterLink in newCharacterLinks">
+                </md-list-item>
+                <md-list-item layout-align="center center" >
+                  <md-button class="md-primary" ng-click="newCharacterLink($event)">New relationship</md-button>
+                  <md-button class="md-primary" ng-click="newLinkType($event)">New relationship type</md-button>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab>
+          <!-- <md-tab label="Moves" ng-hide="true">
+            <md-content class="no-padding links-form">
+              <md-list class="links-list bordered">
+                <md-list-item layout-align="center center" >
+                  <md-button class="md-primary" ng-click="newCharacterMove($event)">New move</md-button>
+                  <md-button class="md-primary" ng-click="newMoveType($event)">New move type</md-button>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab> -->
+          <!-- <md-tab label="Acitons">
+            <md-content class="no-padding links-form">
+              <md-list class="links-list bordered">
+                <md-list-item ng-repeat="characterAction in character.actions">
+                  <p>{{characterAction.name()}}</p>
+                </md-list-item>
+                <md-list-item layout-align="center center" >
+                  <md-button class="md-primary" ng-click="newCharacterAction($event)">New action</md-button>
+                  <md-button class="md-primary" ng-click="newActionType($event)">New action type</md-button>
+                </md-list-item>
+              </md-list>
+            </md-content>
+          </md-tab> -->
+      </md-card-content>
+    </md-card>
   </section>
-</md-card>
+</div>

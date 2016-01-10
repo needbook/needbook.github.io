@@ -1,6 +1,6 @@
 <div class="image-wrapper" ui-sref="app.book.details({bookID: book.id})">
   <img class="image" ng-show="book.editions[0].default_image" ng-src="{{book.editions[0].default_image}}" alt="{{book.title}}">
-  <img class="image" ng-show="!book.editions[0].default_image" src="assets/img/no_book_cover.jpg" alt="{{book.title}}">
+  <img class="image" ng-show="!book.editions[0].default_image" src="assets/img/book/no_cover.jpg" alt="{{book.title}}">
 </div>
 <md-card-content>
   <div class="details fade-out">

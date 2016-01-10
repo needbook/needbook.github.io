@@ -1,0 +1,23 @@
+<div class="character-tree">
+  <div>
+    <div ng-repeat="link in filterOrder(character.links, 'asc')" class="tree-elem">
+      <div>{{link.reverse_link.link.names.en_US}}</div>
+      <div><img src="assets/img/avatars/character/{{link.to.gender() || 'unknown'}}.svg" alt="character" /></div>
+      <div>{{link.to.name()}}</div>
+    </div>
+  </div>
+  <div>
+    <div ng-repeat="link in filterOrder(character.links, 'indifferent')" class="tree-elem" ng-class="{ 'itself': character.id == link.id }">
+      <div><span ng-if="link.id != character.id">{{link.reverse_link.link.names.en_US}}</span><span>&nbsp;</span></div>
+      <div><img src="assets/img/avatars/character/{{link.to.gender() || 'unknown'}}.svg" alt="character" /></div>
+      <div>{{link.to.name()}}</div>
+    </div>
+  </div>
+  <div>
+    <div ng-repeat="link in filterOrder(character.links, 'desc')" class="tree-elem">
+      <div>{{link.reverse_link.link.names.en_US}}</div>
+      <div><img src="assets/img/avatars/character/{{link.to.gender() || 'unknown'}}.svg" alt="character" /></div>
+      <div>{{link.to.name()}}</div>
+    </div>
+  </div>
+</div>
