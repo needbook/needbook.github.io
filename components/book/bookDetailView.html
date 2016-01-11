@@ -68,13 +68,21 @@
       <div class="md-toolbar-tools">
         <h3>{{places.length}} Places</h3>
         <span flex></span>
-        <md-button class="md-icon-button" ui-sref="app.book.places.new({bookID: bookId})">
+        <md-button class="md-icon-button" ng-click="addMap()" ng-hide="map.url">
+          <ng-md-icon icon="add"></ng-md-icon>
+        </md-button>
+        <md-button class="md-icon-button" ui-sref="app.book.places.new({bookID: bookId})" ng-show="map.url">
           <ng-md-icon icon="add"></ng-md-icon>
         </md-button>
       </div>
     </md-toolbar>
-    <md-card-content class="no-padding empty" ng-hide="places.length">
-      <empty-content icon="map" text="No places found"></empty-content>
+    <md-card-content class="no-padding empty" ng-hide="map.url">
+      <empty-content icon="map" text="No map found"></empty-content>
+      <md-button class="md-primary" ng-click="addMap()">Add Map</md-button>
+    </md-card-content>
+
+    <md-card-content class="no-padding empty" ng-show="!places.length && map.url">
+      <empty-content icon="location_on" text="No places found"></empty-content>
       <md-button class="md-primary" ui-sref="app.book.places.new()">Add Places</md-button>
     </md-card-content>
 
