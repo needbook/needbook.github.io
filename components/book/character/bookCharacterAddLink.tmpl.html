@@ -9,8 +9,9 @@
     </div>
   </md-toolbar>
 
-  <md-dialog-content class="dialog-add-event">
-    <div>
+  <md-dialog-content flex>
+    <div class="md-dialog-content">
+      <i>Select a relationship</i>
       <md-autocomplete
         md-selected-item="link.link"
         md-search-text="searchText"
@@ -24,10 +25,8 @@
         <md-not-found>
           No matches found.
         </md-not-found>
-      </md-autocomplete>
-      Do you want to <md-button class="md-primary" ng-click="newLinkType()">create a new one</md-button>?
-    </div>
-    <div>
+      </md-autocomplete><br>
+      <i>Select a character</i>
       <md-autocomplete
         md-selected-item="link.to"
         md-search-text="searchChar"
@@ -42,7 +41,6 @@
           No matches found.
         </md-not-found>
       </md-autocomplete>
-    </div>
     <div ng-show="link.link">
       <h2>Comment</h2>
       <md-input-container layout flex>
@@ -63,9 +61,10 @@
         </md-input-container>
       </div>
     </div>
-  </md-dialog-content>
-  <div class="md-actions">
-    <md-button ng-click="cancelDialog()" class="md-warn">Cancel</md-button>
-    <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
   </div>
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button ng-click="close()">Cancel</md-button>
+    <md-button ng-click="save()" class="md-primary">Save</md-button>
+  </md-dialog-actions>
 </md-dialog>

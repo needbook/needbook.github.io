@@ -9,7 +9,7 @@
     </div>
   </md-toolbar>
 
-  <md-dialog-content>
+  <md-dialog-content flex>
     <div class="md-dialog-content">
       <h2>Wold Map of {{book.title}}</h2>
       <p>
@@ -24,7 +24,6 @@
       </md-input-container>
       <img ng-hide="!map.url" style="margin: auto; max-width: 100%;" alt="Map" ng-src="{{map.url}}">
     </div>
-
   </md-dialog-content>
   <md-dialog-actions>
     <md-button ng-click="close()">Cancel</md-button>

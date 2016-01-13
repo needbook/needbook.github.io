@@ -1,28 +1,47 @@
 <div class="character-edition-page md-margin" layout="row" layout-aligne="start space-between" layout-wrap>
   <section class="left-side" flex-gt-xs="35" flex-gt-sm="30">
     <md-card class="character-card with-image-content">
-      <img class="md-card-image" src="assets/img/material-design-wallpaper.png" alt="image caption">
+      <img class="md-card-image" ng-hide="character.picture().length" src="assets/img/material-design-wallpaper.png" alt="image caption">
+      <img class="md-card-image" ng-show="character.picture().length" ng-src="{{character.picture()}}" alt="image caption">
       <section class="md-card-image-content" layout="row" layout-wrap layout-align="start space-between">
-        <div class="md-padding" flex="100">
+        <div class="md-padding" flex="100" ng-if="!character.picture().length">
           <img class="md-avatar" src="assets/img/avatars/character/male.svg" ng-show="character.gender() === 'male'"/>
           <img class="md-avatar" src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'"/>
           <img class="md-avatar" src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'"/>
         </div>
-        <div class="md-padding" layout="row" layout-align="start center">
+        <div class="md-padding" layout="row" layout-align="start end" style="align-self: flex-end;">
           <ng-md-icon style="margin-right: 8px;" ng-show="character.gender() && character.gender() != 'unknown'" ng-class="character.gender()"  icon="{{'gender_' + (character.gender())}}"></ng-md-icon>
           <ng-md-icon style="margin-right: 8px;" ng-hide="character.gender() && character.gender() != 'unknown'" icon="gender"></ng-md-icon>
           <h3 class="md-title no-margin">{{character.name() || 'Character name'}}</h3>
         </div>
       </section>
-      <md-card-content>
-        <i class="md-body-1">Please note that the traits <span class="warn-color" style="font-style: normal;">Name*</span> and <span class="warn-color" style="font-style: normal;">Gender*</span> are required before saving your character.</i>
-      </md-card-content>
-      <md-divider></md-divider>
-      <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-accent" ng-click="save()" ng-disabled="!indexedCharacterTraits.names[0].values.en_US[0].length || !indexedCharacterTraits.gender[0].values.en_US[0].length">
-          {{charId ? 'Update' : 'Create'}}
-        </md-button>
-      </md-card-actions>
+      <form name="characterForm" ng-submit="save()">
+        <md-card-content>
+          <i class="md-body-1">Please note that the traits <span class="warn-color" style="font-style: normal;">Name*</span> and <span class="warn-color" style="font-style: normal;">Gender*</span> are required before saving your character.</i><br>
+          <md-input-container class="no-errors">
+            <label>Name</label>
+            <input ng-model="character.traits[characterNameIndex].values.en_US[0]" ng-disabled="character.id" required>
+          </md-input-container>
+          <md-input-container class="no-errors">
+            <label>Gender</label>
+            <md-select flex ng-model="character.traits[characterGenderIndex].values.en_US[0]" ng-disabled="character.id" required>
+              <md-option ng-repeat="value in character.traits[characterGenderIndex].trait.possible_values" value="{{value}}">
+                {{value}}
+              </md-option>
+            </md-select>
+          </md-input-container>
+          <md-input-container class="no-errors">
+            <label>Picture URL</label>
+            <input ng-model="character.traits[characterPictureIndex].values.en_US[0]" ng-disabled="character.id" required>
+          </md-input-container>
+        </md-card-content>
+        <md-divider></md-divider>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button class="md-accent" type="submit" ng-disabled="characterForm.$invalid">
+            {{charId ? 'Update' : 'Create'}}
+          </md-button>
+        </md-card-actions>
+      </form>
     </md-card>
 
     <md-card class="character-about-card">
@@ -69,7 +88,7 @@
               <md-list class="traits-list">
                 <md-list-item class="md-2-line secondary-button-padding" ng-repeat="characterTrait in character.traits">
                   <div class="md-list-item-text" layout="column" ng-hide="characterTrait._edit">
-                    <h3 ng-show="characterTrait.values['en_US'].length">{{ characterTrait.values['en_US'].join(',') }}</h3>
+                    <h3 ng-show="characterTrait.values['en_US'].length">{{ characterTrait.values['en_US'].join(',') | limitTo:30 }}</h3>
                     <h3 ng-hide="characterTrait.values['en_US'].length"><i>Click on the edit button to update this trait</i></h3>
                     <p>{{ characterTrait.trait.names['en_US'] }}</p>
                     <span class="md-caption secondary-color-on-light">
@@ -195,7 +214,7 @@
             </md-content>
           </md-tab>
 
-          <md-tab md-active="false" label="Relationships">
+          <md-tab md-active="fal" label="Relationships">
             <md-content class="no-padding links-form">
               <md-list class="links-list bordered">
                 <md-list-item md-no-ink class="link-type" ng-repeat="(linkTypeName, characterLinks) in indexedCharacterLinks" ng-class="{active: selectedLinkType.id === characterLinks[0].link.id}">

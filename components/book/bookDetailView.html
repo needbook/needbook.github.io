@@ -87,8 +87,8 @@
     </md-card-content>
 
     <md-card-content class="no-padding" ng-show="places.length">
-      <md-list>
-        <md-list-item ng-repeat="place in places">
+      <md-list flex>
+        <md-list-item ng-repeat="place in places" ng-click="goToPlace(place.id)">
           <p>{{place.name()}}</p>
         </md-list-item>
       </md-list>

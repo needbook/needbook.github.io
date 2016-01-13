@@ -8,33 +8,33 @@
        </md-button>
     </div>
   </md-toolbar>
-  <md-dialog-content class="dialog-add-event">
-    <md-input-container>
-      <input type="text" placeholder="Name" ng-model="traitType.names.en_US">
-    </md-input-container>
-    <md-checkbox ng-model="traitType.primary">Primary</md-checkbox>
-    <md-checkbox ng-model="traitType.multiple">Can have multiple values</md-checkbox>
-    <md-checkbox ng-model="possibleValues">Restricted values</md-checkbox>
-    <div ng-show="traitType && possibleValues">
-      <h2>Possible values</h2>
-      <md-list>
-        <md-list-item class="md-2-line" ng-repeat="value in traitType.possible_values">
-          <md-input-container>
-            <input type="text" ng-model="value">
-          </md-input-container>
-        </md-list-item>
-      </md-list>
-      <div layout flex>
-        <md-input-container flex>
-          <label>New Value</label>
-          <input type="text" ng-model="newTraitTypeValue">
+  <md-dialog-content flex>
+    <div class="md-dialog-content">
+      <md-input-container>
+        <label>Trait Name</label>
+        <input type="text" ng-model="traitType.names.en_US">
+      </md-input-container><br>
+      <md-checkbox ng-model="traitType.primary">Primary</md-checkbox>
+      <md-checkbox ng-model="traitType.multiple">Can have multiple values</md-checkbox>
+      <md-checkbox ng-model="possibleValues">Restricted values</md-checkbox>
+      <div ng-show="traitType && possibleValues">
+        <h2>Possible values</h2>
+        <md-input-container ng-repeat="(i, value) in traitType.possible_values">
+          <label>Value {{i + 1}}</label>
+          <input type="text" ng-model="value">
         </md-input-container>
-        <md-button ng-click="addTraitTypeValue()" flex="25">Add</md-button>
+        <div>
+          <md-input-container>
+            <label>New Value</label>
+            <input type="text" ng-model="newTraitTypeValue">
+          </md-input-container>
+          <md-button ng-click="addTraitTypeValue()" flex="25">Add</md-button>
+        </div>
       </div>
     </div>
   </md-dialog-content>
-  <div class="md-actions">
+  <md-dialog-actions>
     <md-button ng-click="close()">Cancel</md-button>
     <md-button ng-click="save()" class="md-primary">Save</md-button>
-  </div>
+  </md-dialog-actions>
 </md-dialog>

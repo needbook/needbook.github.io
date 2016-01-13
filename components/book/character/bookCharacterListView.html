@@ -3,9 +3,12 @@
     <md-list class="character-list" hide-xs>
       <!--ui-sref="app.book.character({bookID: bookId, charID: character.id})"-->
       <md-list-item ng-repeat="character in characters | orderBy:orderByName" ng-click="goToCharacter(character.id)"  ng-class="{'active': character.id === selectedCharacter.id}">
-        <img src="assets/img/avatars/character/male.svg" ng-show="character.gender() === 'male'" class="md-avatar" alt="{{character.name()}}"/>
-        <img src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.gender()}}"/>
-        <img src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.gender()}}"/>
+        <span ng-if="!character.picture().length">
+          <img src="assets/img/avatars/character/male.svg" ng-show="character.gender() === 'male'" class="md-avatar" alt="{{character.name()}}"/>
+          <img src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.gender()}}"/>
+          <img src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.gender()}}"/>
+        </span>
+        <img ng-src="{{character.picture()}}" ng-if="character.picture().length" class="md-avatar" alt="{{character.name()}}"/>
         <p>{{character.name()}}</p>
       </md-list-item>
     </md-list>

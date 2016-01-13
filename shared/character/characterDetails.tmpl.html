@@ -5,8 +5,8 @@
 <md-content class="details-container fixed-height">
   <div class="picture-container">
     <div class="picture">
-      <img class="image" ng-if="character.picture()" ng-src="{{book.default_edition.default_image}}" alt="{{book.title}}">
-      <div class="default_picture" ng-if="!character.picture()" alt="{{book.title}}">
+      <img class="image" ng-if="selectedCharacter.picture().length" ng-src="{{selectedCharacter.picture()}}" alt="{{book.title}}">
+      <div class="default_picture" ng-if="!selectedCharacter.picture()" alt="{{book.title}}">
         <ng-md-icon icon="person" size="200"></ng-md-icon>
       </div>
       <!-- <img src="http://vignette4.wikia.nocookie.net/gameofthrones/images/e/ee/Eddard_and_Petyr_1x07.png/revision/latest/scale-to-width-down/512?cb=20110622085002"> -->
@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <md-tabs class="md-primary" md-swipe-content md-stretch-tabs="always" >
+  <md-tabs ng-init="swipe = true" class="md-primary" md-swipe-content="{{swipe}}" md-stretch-tabs="always">
     <md-tab label="Details">
       <md-content>
         <md-list>
@@ -71,7 +71,7 @@
         <!-- <character-links-card class="character-card" book-id="bookId" char-id="charId"></character-links-card> -->
           <md-list-item class="md-2-line" ng-repeat="characterTrait in selectedCharacter.traits" ng-show="characterTrait.trait.names.en_US != 'Gender'">
             <div class="md-list-item-text md-offset">
-              <h3>{{characterTrait.values.en_US[0]}}</h3>
+              <h3>{{characterTrait.values.en_US[0] | limitTo:40}} {{characterTrait.values.en_US[0].length >= 40 ? '...' : ''}}</h3>
               <p>{{characterTrait.trait.names.en_US}}</p>
             </div>
           </md-list-item>
@@ -111,6 +111,11 @@
     <md-tab label="Family tree">
       <md-content class="md-padding">
         <character-tree character="selectedCharacter"></character-tree>
+      </md-content>
+    </md-tab>
+    <md-tab label="Map" md-on-select="swipe = false" md-on-deselect="swipe = true">
+      <md-content class="md-padding">
+        <map map="book.map" character="selectedCharacter" places="places"></map>
       </md-content>
     </md-tab>
   </md-tabs>

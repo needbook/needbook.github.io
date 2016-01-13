@@ -9,46 +9,50 @@
     </div>
   </md-toolbar>
 
-  <md-dialog-content  class="dialog-add-event">
-    <md-input-container>
-      <input type="text" placeholder="Name" ng-model="link_type.names.en_US">
-    </md-input-container>
-    <h2>Tree order</h2>
-    <md-radio-group ng-model="link_type.tree_order">
-      <md-radio-button value="indifferent" class="md-primary">Indifferent</md-radio-button>
-      <md-radio-button value="asc">Ascending</md-radio-button>
-      <md-radio-button value="desc">Descending</md-radio-button>
-    </md-radio-group>
-    <h2>Sentences</h2>
-    <div layout flex>
-      Character
+  <md-dialog-content>
+    <div class="md-dialog-content">
       <md-input-container>
-        <input type="text" placeholder="sentence" ng-model="link_type.sentences.en_US" />
+        <label>Name</label>
+        <input type="text"ng-model="link_type.names.en_US">
       </md-input-container>
-      Character.
+      <h2>Tree order</h2>
+      <md-radio-group ng-model="link_type.tree_order" layout="row">
+        <md-radio-button value="indifferent">Indifferent</md-radio-button>
+        <md-radio-button value="asc">Ascending</md-radio-button>
+        <md-radio-button value="desc">Descending</md-radio-button>
+      </md-radio-group>
+      <h2>Sentences</h2>
+      <div layout flex layout-align="start center">
+        Character
+        <md-input-container style="margin: 25px 0 11px 0;">
+          <label>Sentence</label>
+          <input type="text" ng-model="link_type.sentences.en_US" />
+        </md-input-container>
+        Character.
+      </div>
+      <h2>Reverse link</h2>
+      <div layout flex>
+        <md-checkbox ng-model="link_type.reverse_itself" aria-label="Itself">Itself</md-checkbox>
+      </div>
+      <md-autocomplete
+        ng-show="!link_type.reverse_itself"
+        md-selected-item="link_type.reverse_link_type"
+        md-search-text="searchText"
+        md-items="link_type in querySearch(searchText)"
+        md-item-text="link_type.names.en_US"
+        md-min-length="0"
+        placeholder="Reverse link type name">
+        <md-item-template>
+          <span md-highlight-text="searchText" md-highlight-flags="^i">{{link_type.names.en_US}}</span>
+        </md-item-template>
+        <md-not-found>
+          No matches found.
+        </md-not-found>
+      </md-autocomplete>
     </div>
-    <h2>Reverse link</h2>
-    <div layout flex>
-      <md-checkbox ng-model="link_type.reverse_itself" aria-label="Itself">Itself</md-checkbox>
-    </div>
-    <md-autocomplete
-      ng-show="!link_type.reverse_itself"
-      md-selected-item="link_type.reverse_link_type"
-      md-search-text="searchText"
-      md-items="link_type in querySearch(searchText)"
-      md-item-text="link_type.names.en_US"
-      md-min-length="0"
-      placeholder="Reverse link type name">
-      <md-item-template>
-        <span md-highlight-text="searchText" md-highlight-flags="^i">{{link_type.names.en_US}}</span>
-      </md-item-template>
-      <md-not-found>
-        No matches found.
-      </md-not-found>
-    </md-autocomplete>
   </md-dialog-content>
-  <div class="md-actions">
+  <md-dialog-actions>
     <md-button ng-click="close()">Cancel</md-button>
     <md-button ng-click="save()" class="md-primary">Save</md-button>
-  </div>
+  </md-dialog-actions>
 </md-dialog>
