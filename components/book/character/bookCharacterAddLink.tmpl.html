@@ -14,8 +14,8 @@
       <i>Select a relationship</i>
       <md-autocomplete
         md-selected-item="link.link"
-        md-search-text="searchText"
-        md-items="link_type in querySearch(searchText)"
+        md-search-text="searchLink"
+        md-items="link_type in linkSearch()"
         md-item-text="link_type.names.en_US"
         md-min-length="0"
         placeholder="Type name">
@@ -30,7 +30,7 @@
       <md-autocomplete
         md-selected-item="link.to"
         md-search-text="searchChar"
-        md-items="character in characterSearch(searchChar)"
+        md-items="character in characterSearch()"
         md-item-text="character.name()"
         md-min-length="0"
         placeholder="Character relation">
