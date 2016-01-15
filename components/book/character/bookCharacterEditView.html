@@ -32,7 +32,7 @@
           </md-input-container>
           <md-input-container class="no-errors">
             <label>Picture URL</label>
-            <input ng-model="character.traits[characterPictureIndex].values.en_US[0]" ng-disabled="character.id">
+            <input ng-model="character.traits[characterPictureIndex].values.en_US[0]" ng-disabled="character.traits[characterPictureIndex].id">
           </md-input-container>
         </md-card-content>
         <md-divider></md-divider>
@@ -247,9 +247,10 @@
                     <div flex class="characters">
                       <md-list>
                         <md-list-item ng-repeat="characterLink in characterLinks">
-                          <img src="assets/img/avatars/character/male.svg" ng-show="characterLink.to.gender() === 'male'" class="md-avatar" alt="{{characterLink.to.name()}}"/>
-                          <img src="assets/img/avatars/character/female.svg" ng-show="characterLink.to.gender() === 'female'" class="md-avatar" alt="{{characterLink.to.gender()}}"/>
-                          <img src="assets/img/avatars/character/unknown.svg" ng-show="characterLink.to.gender() != 'female' && characterLink.to.gender() != 'male'" class="md-avatar" alt="{{characterLink.to.gender()}}"/>
+                          <img ng-src="{{characterLink.to.picture()}}" ng-if="characterLink.to.picture()" class="md-avatar" alt="{{characterLink.to.name()}}"/>
+                          <img ng-src="{{characterLink.to.avatar()}}" ng-if="!characterLink.to.picture()" class="md-avatar" alt="{{characterLink.to.name()}}"/>
+                          <!-- <img src="assets/img/avatars/character/female.svg" ng-show="characterLink.to.gender() === 'female'" class="md-avatar" alt="{{characterLink.to.gender()}}"/>
+                          <img src="assets/img/avatars/character/unknown.svg" ng-show="characterLink.to.gender() != 'female' && characterLink.to.gender() != 'male'" class="md-avatar" alt="{{characterLink.to.gender()}}"/> -->
                           <p>{{characterLink.to.name()}}</p>
                         </md-list-item>
                       </md-list>
