@@ -3,13 +3,13 @@
     <div class="md-toolbar-tools">
     <h1>Add move</h1>
       <span flex></span>
-      <md-button class="md-icon-button" ng-click="cancelDialog()">
+      <md-button class="md-icon-button" ng-click="close()">
         <ng-md-icon icon="close"></ng-md-icon>
        </md-button>
     </div>
   </md-toolbar>
 
-  <md-dialog-content class="dialog-add-event">
+  <md-dialog-content class="dialog-add-event" flex>
     <div>
       <h2>From</h2>
       <md-autocomplete
@@ -59,7 +59,7 @@
     </div>
   </md-dialog-content>
   <md-dialog-actions>
-    <md-button ng-click="cancelDialog()" class="md-warn">Cancel</md-button>
-    <md-button ng-click="closeDialog()" class="md-primary">Save</md-button>
+    <md-button ng-click="close()" class="">Cancel</md-button>
+    <md-button ng-click="save()" class="md-primary">Save</md-button>
   </md-dialog-actions>
 </md-dialog>

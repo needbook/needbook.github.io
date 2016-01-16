@@ -263,16 +263,18 @@
               </md-list>
             </md-content>
           </md-tab>
-          <!-- <md-tab label="Moves" ng-hide="true">
-            <md-content class="no-padding links-form">
+          <md-tab label="Moves" ng-active="true" >
+          <md-content class="no-padding links-form">
               <md-list class="links-list bordered">
+                <md-list-item ng-repeat="move in character.moves">
+                  <p>Moved from: {{move.from.name()}} to {{move.to.name()}}</p>
+                </md-list-item>
                 <md-list-item layout-align="center center" >
                   <md-button class="md-primary" ng-click="newCharacterMove($event)">New move</md-button>
-                  <md-button class="md-primary" ng-click="newMoveType($event)">New move type</md-button>
                 </md-list-item>
               </md-list>
             </md-content>
-          </md-tab> -->
+          </md-tab>
           <!-- <md-tab label="Acitons">
             <md-content class="no-padding links-form">
               <md-list class="links-list bordered">

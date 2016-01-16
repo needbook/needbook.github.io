@@ -32,7 +32,7 @@
           <md-subheader class="md-no-sticky">Traits</md-subheader>
           <md-list-item class="md-2-line" ng-repeat="characterTrait in selectedCharacter.traits" ng-show="characterTrait.trait.names.en_US != 'Gender'">
             <div class="md-list-item-text md-offset">
-              <h3>{{characterTrait.values.en_US[0] | limitTo:40}} {{characterTrait.values.en_US[0].length >= 40 ? '...' : ''}}</h3>
+              <h3>{{characterTrait.values.en_US[0] | limitTo:100}} {{characterTrait.values.en_US[0].length >= 100 ? '...' : ''}}</h3>
               <p>{{characterTrait.trait.names.en_US}}</p>
             </div>
           </md-list-item>
