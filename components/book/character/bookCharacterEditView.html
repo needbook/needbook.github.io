@@ -97,9 +97,6 @@
                       <span ng-show="characterTrait.end_location">End at: {{ characterTrait.end_location }}</span>
                     </span>
                     <div class="md-secondary-buttons">
-                      <md-button class="md-icon-button icon-color-on-light md-secondary" ng-hide="characterTrait._edit" ng-click="removeCharacterTrait(characterTrait)">
-                        <ng-md-icon icon="delete"></ng-md-icon>
-                      </md-button>
                       <md-button class="md-icon-button icon-color-on-light md-secondary" ng-hide="characterTrait._edit || characterTrait.id" ng-click="characterTrait._edit = true;">
                         <ng-md-icon icon="edit"></ng-md-icon>
                       </md-button>

@@ -16,44 +16,6 @@
         <h2 class="md-display-1">{{selectedCharacter.name()}}</h2>
       </div>
     </div>
-    <div class="action-buttons-container">
-      <div class="buttons-left">
-        <md-button class="md-icon-button" hide-gt-xs>
-          <ng-md-icon icon="arrow_back"></ng-md-icon>
-        </md-button>
-      </div>
-      <div class="buttons-right">
-        <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.book.character.edit({charID: charId})">
-          <ng-md-icon icon="edit"></ng-md-icon>
-        </md-button>
-        <md-menu md-position-mode="target-right target">
-          <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-            <ng-md-icon md-menu-origin icon="more_vert"></ng-md-icon>
-          </md-button>
-          <md-menu-content width="3">
-            <md-menu-item>
-              <md-button>
-                <div layout="row">
-                  <p flex>Share</p>
-                  <ng-md-icon md-menu-align-target icon="share"></ng-md-icon>
-                </div>
-              </md-button>
-            </md-menu-item>
-            <md-menu-item>
-              <md-button class="md-warn" ng-click="deleteCharacter($event)">
-                <div layout="row">
-                  <p flex>Delete</p>
-                  <ng-md-icon md-menu-align-target icon="delete" ></ng-md-icon>
-                </div>
-              </md-button>
-            </md-menu-item>
-          </md-menu-content>
-        </md-menu>
-      </div>
-      <!-- <md-button class="md-fab md-accent" aria-label="Edit">
-        <ng-md-icon icon="edit"></ng-md-icon>
-      </md-button> -->
-    </div>
   </div>
 
   <md-tabs ng-init="swipe = true" class="md-primary" md-swipe-content="{{swipe}}" md-stretch-tabs="always">
@@ -68,7 +30,6 @@
           </md-list-item>
           <md-divider ></md-divider>
           <md-subheader class="md-no-sticky">Traits</md-subheader>
-        <!-- <character-links-card class="character-card" book-id="bookId" char-id="charId"></character-links-card> -->
           <md-list-item class="md-2-line" ng-repeat="characterTrait in selectedCharacter.traits" ng-show="characterTrait.trait.names.en_US != 'Gender'">
             <div class="md-list-item-text md-offset">
               <h3>{{characterTrait.values.en_US[0] | limitTo:40}} {{characterTrait.values.en_US[0].length >= 40 ? '...' : ''}}</h3>

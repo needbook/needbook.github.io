@@ -5,8 +5,8 @@
       <md-list-item ng-repeat="character in characters | orderBy:orderByName" ng-click="goToCharacter(character.id)"  ng-class="{'active': character.id === selectedCharacter.id}">
         <span ng-if="!character.picture().length">
           <img src="assets/img/avatars/character/male.svg" ng-show="character.gender() === 'male'" class="md-avatar" alt="{{character.name()}}"/>
-          <img src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.gender()}}"/>
-          <img src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.gender()}}"/>
+          <img src="assets/img/avatars/character/female.svg" ng-show="character.gender() === 'female'" class="md-avatar" alt="{{character.name()}}"/>
+          <img src="assets/img/avatars/character/unknown.svg" ng-show="character.gender() != 'female' && character.gender() != 'male'" class="md-avatar" alt="{{character.name()}}"/>
         </span>
         <img ng-src="{{character.picture()}}" ng-if="character.picture().length" class="md-avatar" alt="{{character.name()}}"/>
         <p>{{character.name()}}</p>
@@ -15,98 +15,27 @@
   </md-content>
 
   <character-details book-id="bookId" char-id=charId></character-details>
-
-  <md-content  ng-hide="true">
-    <div class="picture-container">
-      <div class="picture">
-        <img class="image" ng-if="character.picture()" ng-src="{{book.default_edition.default_image}}" alt="{{book.title}}">
-        <div class="default_picture" ng-if="!character.picture()" alt="{{book.title}}">
-          <ng-md-icon icon="person" size="200"></ng-md-icon>
-        </div>
-        <!-- <img src="http://vignette4.wikia.nocookie.net/gameofthrones/images/e/ee/Eddard_and_Petyr_1x07.png/revision/latest/scale-to-width-down/512?cb=20110622085002"> -->
-      </div>
-      <div class="character-name-container">
-        <div class="character-name">
-          <h2 class="md-display-1">{{selectedCharacter.name()}}</h2>
-        </div>
-      </div>
-      <div class="action-buttons-container">
-        <div class="buttons-left">
-          <md-button class="md-icon-button" hide-gt-xs>
-            <ng-md-icon icon="arrow_back"></ng-md-icon>
-          </md-button>
-        </div>
-        <div class="buttons-right">
-          <md-button class="md-icon-button">
-            <ng-md-icon icon="edit"></ng-md-icon>
-          </md-button>
-          <md-button class="md-icon-button">
-            <ng-md-icon icon="more_vert"></ng-md-icon>
-          </md-button>
-        </div>
-      </div>
-    </div>
-    <character-links-card class="character-card" book-id="bookId" char-id="charId"></character-links-card>
-    <character-links-card class="character-card" book-id="bookId" char-id="charId"></character-links-card>
-    <character-links-card class="character-card" book-id="bookId" char-id="charId"></character-links-card>
-    <character-links-card class="character-card" book-id="bookId" char-id="charId"></character-links-card>
-
-    <md-list ng-hide="true">
-      <md-subheader class="md-no-sticky">Character Informations</md-subheader>
-      <md-list-item class="md-2-line">
-        <ng-md-icon class="md-avatar-icon" icon="person"></ng-md-icon>
-        <div class="md-list-item-text" ng-class="{'md-offset': $index == 2 }">
-          <h3>{{selectedCharacter.name()}}</h3>
-          <p>{{traits.names[0].trait.names.en_US}}</p>
-        </div>
-      </md-list-item>
-      <md-list-item class="md-2-line">
-        <div class="md-list-item-text md-offset">
-          <h3>{{selectedCharacter.gender()}}</h3>
-          <p>{{traits.gender[0].trait.names.en_US}}</p>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-      <md-subheader class="md-no-sticky">Links</md-subheader>
-      {{links[0]}}
-      <md-list-item class="md-2-line" ng-repeat="event in events" ng-show="event.type === 'link'">
-        <!-- <ng-md-icon class="md-avatar-icon" icon="link"></ng-md-icon> -->
-        <div class="md-list-item-text md-offset">
-          <h3>{{event.toSentence('en_US')}}</h3>
-          <p>{{event.link.names.en_US}}</p>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-      <md-subheader class="md-no-sticky">Actions</md-subheader>
-      <md-list-item class="md-2-line" ng-repeat="event in events" ng-show="event.type === 'action'">
-        <ng-md-icon class="md-avatar-icon" icon="event_note"></ng-md-icon>
-        <div class="md-list-item-text" ng-class="{'md-offset': $index == 2 }">
-          <!-- <h3>{{traits}}</h3> -->
-          <p>{{event.toJson()}}</p>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-      <md-subheader class="md-no-sticky">Traits</md-subheader>
-      <md-list-item class="md-2-line" ng-repeat="event in events" ng-show="event.type === 'trait' && event.trait.names.en_US != traits.gender[0].trait.names.en_US && event.trait.names.en_US != traits.names[0].trait.names.en_US">
-        <ng-md-icon class="md-avatar-icon" icon="link" ng-hide="$index > 0"></ng-md-icon>
-        <div class="md-list-item-text" ng-class="{'md-offset': $index > 0 }">
-          <h3>{{event.values.en_US.join(', ')}}</h3>
-          <p>{{event.trait.names.en_US}}</p>
-        </div>
-      </md-list-item>
-      <md-divider ></md-divider>
-      <md-subheader class="md-no-sticky">Moves</md-subheader>
-      <md-list-item class="md-2-line" ng-repeat="event in events" ng-show="event.type === 'move'">
-        <ng-md-icon class="md-avatar-icon" icon="event_note"></ng-md-icon>
-        <div class="md-list-item-text" ng-class="{'md-offset': $index == 2 }">
-          <!-- <h3>{{traits}}</h3> -->
-          <p>{{event.toJson()}}</p>
-        </div>
-      </md-list-item>
-    </md-list>
-    <!-- {{selectedCharacter}} -->
-  </md-content>
 </div>
+
+<md-fab-speed-dial id="my-speed-dial" class="md-scale" md-direction="up" md-open="fab.isOpen" ng-mouseenter="fab.isOpen=true" ng-mouseleave="fab.isOpen=false">
+  <md-fab-trigger>
+    <md-button aria-label="menu" class="md-fab md-accent">
+      <md-tooltip md-direction="left">Open</md-tooltip>
+      <ng-md-icon icon="menu" aria-label="{{'action.add' | i18next}}"></ng-md-icon>
+    </md-button>
+  </md-fab-trigger>
+  <md-fab-actions ng-show="fab.isOpen">
+    <div ng-repeat="fabAction in fabActions">
+      <md-button aria-label="{{fabAction.name}}" class="md-fab md-raised md-mini" ng-click="fabActionClick($index)">
+        <md-tooltip md-direction="left">
+          {{fabAction.name}}
+        </md-tooltip>
+        <ng-md-icon icon="{{fabAction.icon}}" aria-label="{{fabAction.name}}"></ng-md-icon>
+      </md-button>
+    </div>
+ </md-fab-actions>
+</md-fab-speed-dial>
+
 <!-- <div ng-controller="BookCharacterDetailCtrl">
   <div style="text-align:right;">
     <md-button ng-click="addTraitDialog();">Add trait</md-button>

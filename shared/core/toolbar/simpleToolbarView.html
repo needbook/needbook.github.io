@@ -12,8 +12,11 @@
 
 <md-toolbar class="md-whiteframe-z2" ng-class="{'md-tall': tabs.length > 0}">
   <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" ng-click="toggleLeft();" aria-label="Settings">
+    <md-button ng-if="!prev" class="md-icon-button" ng-click="toggleLeft();" aria-label="Settings">
       <ng-md-icon icon="menu"></ng-md-icon>
+    </md-button>
+    <md-button ng-if="prev" class="md-icon-button" ng-click="previous()" aria-label="Back">
+      <ng-md-icon icon="arrow_back"></ng-md-icon>
     </md-button>
     <div class="toolbar-container">
       <h2 class="title">
